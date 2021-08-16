@@ -8,6 +8,7 @@ use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\SyntaxSniff;
+use PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff;
 use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
@@ -100,13 +101,17 @@ return static function(ContainerConfigurator $containerConfigurator): void {
 	$services->set(SemicolonSpacingSniff::class);
 	$services->set(ScopeKeywordSpacingSniff::class);
 	$services->set(BinaryOperatorSpacesFixer::class)
-
 		->call('configure', [
 			[
 				'operators' => [
-					'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL
+					'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL,
 				],
 			],
+		]);
+
+	$services->set(FunctionDeclarationFixer::class)
+		->call('configure', [
+			['closure_function_spacing' => FunctionDeclarationFixer::SPACING_NONE],
 		]);
 
 	$services->set(ForbiddenFunctionsSniff::class)
