@@ -1,6 +1,7 @@
 <?php
 
 // ecs.php
+use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
@@ -9,6 +10,7 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\SyntaxSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff;
+use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\LowerCaseKeywordSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\NoSilencedErrorsSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\LowerCaseConstantSniff;
@@ -135,6 +137,9 @@ return static function(ContainerConfigurator $containerConfigurator): void {
 				'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
 			],
 		]);
+
+	$services->remove(NoBlankLinesAfterClassOpeningFixer::class);
+	$services->remove(BracesFixer::class);
 
 	$parameters = $containerConfigurator->parameters();
 	$parameters->set(Option::PATHS, [
