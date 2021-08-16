@@ -13,7 +13,16 @@
     {
       "name": "Aaron Florey",
       "email": "aaron@buckhamduffy.com"
+    },
+    {
+      "name": "Alex Buckham",
+      "email": "alex@buckhamduffy.com"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  }
 }

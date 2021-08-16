@@ -4,6 +4,7 @@
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\SyntaxSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
@@ -50,8 +51,10 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstant
  * @var                      ContainerConfigurator $containerConfigurator
  * @phpstan-ignore-next-line
  */
-return static function (ContainerConfigurator $containerConfigurator): void {
+return static function(ContainerConfigurator $containerConfigurator): void {
 	$services = $containerConfigurator->services();
+
+	$containerConfigurator->import(SetList::PSR_12);
 
 	$services->set(ArraySyntaxFixer::class)
 		->call('configure', [
@@ -94,28 +97,37 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 	$services->set(PropertyLabelSpacingSniff::class);
 	$services->set(SemicolonSpacingSniff::class);
 	$services->set(ScopeKeywordSpacingSniff::class);
+	$services->set(BinaryOperatorSpacesFixer::class)
+
+		->call('configure', [
+			[
+				'operators' => [
+					'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL
+				],
+			],
+		]);
+
 	$services->set(ForbiddenFunctionsSniff::class)
 		->property(
 			'forbiddenFunctions',
 			[
-			'eval' => null,
-			'dd' => null,
-			'die' => null,
-			'var_dump' => null,
-			'size_of' => 'count',
-			'print' => 'echo',
-			'create_function' => null,
+				'eval'            => null,
+				'dd'              => null,
+				'die'             => null,
+				'var_dump'        => null,
+				'size_of'         => 'count',
+				'print'           => 'echo',
+				'create_function' => null,
 			]
 		);
 
 	$services->set(CommentedOutCodeSniff::class);
 
-	$containerConfigurator->import(SetList::PSR_12);
 
 	$services->set(OrderedImportsFixer::class)
 		->call('configure', [
 			[
-				'imports_order' => [
+				'imports_order'  => [
 					OrderedImportsFixer::IMPORT_TYPE_CONST,
 					OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
 					OrderedImportsFixer::IMPORT_TYPE_CLASS,
@@ -130,7 +142,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 		getcwd() . '/tests',
 		getcwd() . '/database',
 		getcwd() . '/config',
-		]);
+	]);
 	$parameters->set(Option::INDENTATION, 'tab');
 	$parameters->set(Option::SKIP, []);
 };
