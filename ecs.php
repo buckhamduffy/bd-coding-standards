@@ -3,6 +3,7 @@
 // ecs.php
 use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
+use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
@@ -49,6 +50,7 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnconditionalIfStateme
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff;
+
 
 /**
  * @var                      ContainerConfigurator $containerConfigurator
@@ -129,7 +131,7 @@ return static function(ContainerConfigurator $containerConfigurator): void {
 		);
 
 	$services->set(CommentedOutCodeSniff::class);
-
+	$services->set(NoUnusedImportsFixer::class);
 
 	$services->set(OrderedImportsFixer::class)
 		->call('configure', [
