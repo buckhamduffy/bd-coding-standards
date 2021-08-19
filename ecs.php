@@ -1,17 +1,16 @@
 <?php
 
-use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
-use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
-// ecs.php
 use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\SyntaxSniff;
 use PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer;
+use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff;
 use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
