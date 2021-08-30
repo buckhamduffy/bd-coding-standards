@@ -4104,16 +4104,16 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "9.4.40",
+            "version": "9.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "2f138b9f03dc19ce14f8a68428f3d2d8f7f61e33"
+                "reference": "7ab98a5795aae098fd4d74f2f4329e15be1bcb20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/2f138b9f03dc19ce14f8a68428f3d2d8f7f61e33",
-                "reference": "2f138b9f03dc19ce14f8a68428f3d2d8f7f61e33",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/7ab98a5795aae098fd4d74f2f4329e15be1bcb20",
+                "reference": "7ab98a5795aae098fd4d74f2f4329e15be1bcb20",
                 "shasum": ""
             },
             "require": {
@@ -4138,7 +4138,7 @@
             ],
             "description": "Prefixed scoped version of ECS package",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/9.4.40"
+                "source": "https://github.com/symplify/easy-coding-standard/tree/9.4.47"
             },
             "funding": [
                 {
@@ -4150,7 +4150,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-25T10:14:50+00:00"
+            "time": "2021-08-30T15:04:52+00:00"
         },
         {
             "name": "voku/portable-ascii",
