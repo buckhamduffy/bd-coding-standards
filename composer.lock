@@ -4106,20 +4106,20 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "10.2.2",
+            "version": "10.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "d847795500b929f68ed115357658122d64017f77"
+                "reference": "adf8160b62834ef7de518254a05fd6d57b7c1c29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/d847795500b929f68ed115357658122d64017f77",
-                "reference": "d847795500b929f68ed115357658122d64017f77",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/adf8160b62834ef7de518254a05fd6d57b7c1c29",
+                "reference": "adf8160b62834ef7de518254a05fd6d57b7c1c29",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
             "conflict": {
                 "friendsofphp/php-cs-fixer": "<3.0",
@@ -4145,7 +4145,7 @@
             ],
             "description": "Prefixed scoped version of ECS package",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/10.2.2"
+                "source": "https://github.com/symplify/easy-coding-standard/tree/10.2.5"
             },
             "funding": [
                 {
@@ -4157,7 +4157,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-17T10:41:19+00:00"
+            "time": "2022-05-14T22:55:58+00:00"
         },
         {
             "name": "voku/portable-ascii",
