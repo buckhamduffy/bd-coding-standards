@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e0a755f6f5da077ff759a0ca116a294",
+    "content-hash": "c612b57ff472461d9bf1fb200d15142d",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -2086,16 +2086,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "dev-main",
+            "version": "0.13.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "4b78498132b519b0be49d7c1bb3140cda28949fb"
+                "reference": "6e01478f8239bfe28e003fad98d402589fa6861e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/4b78498132b519b0be49d7c1bb3140cda28949fb",
-                "reference": "4b78498132b519b0be49d7c1bb3140cda28949fb",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/6e01478f8239bfe28e003fad98d402589fa6861e",
+                "reference": "6e01478f8239bfe28e003fad98d402589fa6861e",
                 "shasum": ""
             },
             "require": {
@@ -2113,7 +2113,6 @@
                 "rector/rector-prefixed": "*",
                 "rector/rector-symfony": "*"
             },
-            "default-branch": true,
             "bin": [
                 "bin/rector"
             ],
@@ -2135,7 +2134,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/main"
+                "source": "https://github.com/rectorphp/rector/tree/0.13.8"
             },
             "funding": [
                 {
@@ -2143,7 +2142,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-14T22:29:28+00:00"
+            "time": "2022-07-07T09:46:05+00:00"
         },
         {
             "name": "seld/jsonlint",
