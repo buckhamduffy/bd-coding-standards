@@ -23,7 +23,7 @@ ecs.php
 ```php
 <?php
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use ECSPrefix202207\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function(ContainerConfigurator $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php');
@@ -37,7 +37,7 @@ rector.php
 ```php
 <?php
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use RectorPrefix202207\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php');
