@@ -3,7 +3,7 @@
 use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
@@ -42,7 +42,6 @@ use PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ControlSignatureSni
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ControlStructureSpacingSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\ConstructorNameSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\LanguageConstructSpacingSniff;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\LowercaseDeclarationSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnconditionalIfStatementSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff;
@@ -50,112 +49,94 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAl
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff;
 
 /**
- * @var                      ContainerConfigurator $containerConfigurator
  * @phpstan-ignore-next-line
  */
-return static function(ContainerConfigurator $containerConfigurator): void {
-	$services = $containerConfigurator->services();
+return static function (ECSConfig $config): void {
+	$config->sets([SetList::PSR_12]);
 
-	$containerConfigurator->import(SetList::PSR_12);
+	$config->ruleWithConfiguration(ArraySyntaxFixer::class, [
+		'syntax' => 'short',
+	]);
 
-	$services->set(ArraySyntaxFixer::class)
-		->call('configure', [
-			[
-				'syntax' => 'short',
-			],
-		]);
+	$config->rule(UnconditionalIfStatementSniff::class);
+	$config->rule(JumbledIncrementerSniff::class);
+	$config->rule(EmptyStatementSniff::class);
+	$config->rule(SpaceAfterCastSniff::class);
+	$config->rule(OpeningFunctionBraceBsdAllmanSniff::class);
+	$config->rule(FunctionCallArgumentSpacingSniff::class);
+	$config->rule(ConstructorNameSniff::class);
+	$config->rule(UpperCaseConstantNameSniff::class);
+	$config->rule(DisallowShortOpenTagSniff::class);
+	$config->rule(LowerCaseConstantSniff::class);
+	$config->rule(LowerCaseKeywordSniff::class);
+	$config->rule(NoSilencedErrorsSniff::class);
+	$config->rule(SyntaxSniff::class);
+	$config->rule(UnnecessaryStringConcatSniff::class);
+	$config->rule(DisallowSpaceIndentSniff::class);
+	$config->rule(ClassDeclarationSniff::class);
+	$config->rule(ValidClassNameSniff::class);
+	$config->rule(ScopeClosingBraceSniff::class);
+	$config->rule(CamelCapsMethodNameSniff::class);
+	$config->rule(PropertyDeclarationSniff::class);
+	$config->rule(ArrayBracketSpacingSniff::class);
+	$config->rule(ControlSignatureSniff::class);
+	$config->rule(LowercaseDeclarationSniff::class);
+	$config->rule(DisallowSizeFunctionsInLoopsSniff::class);
+	$config->rule(LowercasePHPFunctionsSniff::class);
+	$config->rule(NonExecutableCodeSniff::class);
+	$config->rule(ControlStructureSpacingSniff::class);
+	$config->rule(LanguageConstructSpacingSniff::class);
+	$config->rule(LogicalOperatorSpacingSniff::class);
+	$config->ruleWithConfiguration(ObjectOperatorSpacingSniff::class, [
+		'ignoreNewlines' => true,
+	]);
+	$config->rule(OperatorSpacingSniff::class);
+	$config->rule(PropertyLabelSpacingSniff::class);
+	$config->rule(SemicolonSpacingSniff::class);
+	$config->rule(ScopeKeywordSpacingSniff::class);
 
-	$services->set(UnconditionalIfStatementSniff::class);
-	$services->set(JumbledIncrementerSniff::class);
-	$services->set(EmptyStatementSniff::class);
-	$services->set(SpaceAfterCastSniff::class);
-	$services->set(OpeningFunctionBraceBsdAllmanSniff::class);
-	$services->set(FunctionCallArgumentSpacingSniff::class);
-	$services->set(ConstructorNameSniff::class);
-	$services->set(UpperCaseConstantNameSniff::class);
-	$services->set(DisallowShortOpenTagSniff::class);
-	$services->set(LowerCaseConstantSniff::class);
-	$services->set(LowerCaseKeywordSniff::class);
-	$services->set(NoSilencedErrorsSniff::class);
-	$services->set(SyntaxSniff::class);
-	$services->set(UnnecessaryStringConcatSniff::class);
-	$services->set(DisallowSpaceIndentSniff::class);
-	$services->set(ClassDeclarationSniff::class);
-	$services->set(ValidClassNameSniff::class);
-	$services->set(ScopeClosingBraceSniff::class);
-	$services->set(CamelCapsMethodNameSniff::class);
-	$services->set(PropertyDeclarationSniff::class);
-	$services->set(ArrayBracketSpacingSniff::class);
-	$services->set(ControlSignatureSniff::class);
-	$services->set(LowercaseDeclarationSniff::class);
-	$services->set(DisallowSizeFunctionsInLoopsSniff::class);
-	$services->set(LowercasePHPFunctionsSniff::class);
-	$services->set(NonExecutableCodeSniff::class);
-	$services->set(ControlStructureSpacingSniff::class);
-	$services->set(LanguageConstructSpacingSniff::class);
-	$services->set(LogicalOperatorSpacingSniff::class);
-	$services->set(ObjectOperatorSpacingSniff::class)->property('ignoreNewlines', true);
-	$services->set(OperatorSpacingSniff::class);
-	$services->set(PropertyLabelSpacingSniff::class);
-	$services->set(SemicolonSpacingSniff::class);
-	$services->set(ScopeKeywordSpacingSniff::class);
-	$services->set(BinaryOperatorSpacesFixer::class)
-		->call('configure', [
-			[
-				'operators' => [
-					'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL,
-				],
-			],
-		]);
+	$config->ruleWithConfiguration(BinaryOperatorSpacesFixer::class, [
+		'operators' => [
+			'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL,
+		],
+	]);
 
-	$services->set(FunctionDeclarationFixer::class)
-		->call('configure', [
-			['closure_function_spacing' => FunctionDeclarationFixer::SPACING_NONE],
-		]);
+	$config->ruleWithConfiguration(FunctionDeclarationFixer::class, ['closure_function_spacing' => FunctionDeclarationFixer::SPACING_NONE]);
 
-	$services->set(ForbiddenFunctionsSniff::class)
-		->property(
-			'forbiddenFunctions',
-			[
-				'eval'            => null,
-				'dd'              => null,
-				'die'             => null,
-				'var_dump'        => null,
-				'size_of'         => 'count',
-				'print'           => 'echo',
-				'create_function' => null,
-			]
-		);
+	$config->ruleWithConfiguration(ForbiddenFunctionsSniff::class, [
+		'forbiddenFunctions' => [
+			'eval' => null,
+			'dd' => null,
+			'die' => null,
+			'var_dump' => null,
+			'size_of' => 'count',
+			'print' => 'echo',
+			'create_function' => null,
+		]
+	]);
 
-	$services->set(ExplicitStringVariableFixer::class);
-	$services->set(SingleQuoteFixer::class);
+	$config->rule(ExplicitStringVariableFixer::class);
+	$config->rule(SingleQuoteFixer::class);
 
-	$services->set(CommentedOutCodeSniff::class);
-	$services->set(NoUnusedImportsFixer::class);
+	$config->rule(CommentedOutCodeSniff::class);
+	$config->rule(NoUnusedImportsFixer::class);
 
-	$services->set(OrderedImportsFixer::class)
-		->call('configure', [
-			[
-				'imports_order' => [
-					OrderedImportsFixer::IMPORT_TYPE_CONST,
-					OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
-					OrderedImportsFixer::IMPORT_TYPE_CLASS,
-				],
-				'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
-			],
-		]);
+	$config->ruleWithConfiguration(OrderedImportsFixer::class, [
+		'imports_order' => [
+			OrderedImportsFixer::IMPORT_TYPE_CONST,
+			OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
+			OrderedImportsFixer::IMPORT_TYPE_CLASS,
+		],
+		'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
+	]);
 
-
-	$services->remove(NoBlankLinesAfterClassOpeningFixer::class);
-	$services->remove(BracesFixer::class);
-
-	$parameters = $containerConfigurator->parameters();
-	$parameters->set(Option::PATHS, [
+	$config->paths([
 		getcwd() . '/app',
 		getcwd() . '/tests',
 		getcwd() . '/database',
 		getcwd() . '/config',
 	]);
-	$parameters->set(Option::INDENTATION, 'tab');
-	$parameters->set(Option::SKIP, []);
+
+	$config->indentation('tab');
+	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, BracesFixer::class]);
 };

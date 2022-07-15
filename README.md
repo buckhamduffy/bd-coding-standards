@@ -23,11 +23,10 @@ ecs.php
 ```php
 <?php
 
-use ECSPrefix202207\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 
-return static function(ContainerConfigurator $containerConfigurator): void {
-	$containerConfigurator->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php');
-
+return static function (ECSConfig $config): void {
+	$config->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php');
 };
 ```
 
@@ -37,10 +36,8 @@ rector.php
 ```php
 <?php
 
-use RectorPrefix202207\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-
-return static function (ContainerConfigurator $containerConfigurator): void {
-	$containerConfigurator->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php');
+return static function (\Rector\Config\RectorConfig $config): void {
+	$config->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php');
 };
 ```
 
