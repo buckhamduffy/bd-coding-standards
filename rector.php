@@ -151,6 +151,7 @@ use Rector\CodeQuality\Rector\FuncCall\InArrayAndArrayKeysToArrayKeyExistsRector
 use Rector\CodingStyle\Rector\ClassConst\SplitGroupedConstantsAndPropertiesRector;
 use Rector\Restoration\Rector\ClassLike\UpdateFileNameByClassNameFileSystemRector;
 use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchExprVariableRector;
 use Rector\CodeQuality\Rector\Ternary\ArrayKeyExistsTernaryThenValueToCoalescingRector;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
@@ -159,8 +160,6 @@ use Rector\CodingStyle\Rector\MethodCall\UseMessageVariableForSprintfInSymfonySt
 use Rector\CodeQuality\Rector\FunctionLike\RemoveAlwaysTrueConditionSetInConstructorRector;
 use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchMethodCallReturnTypeRector;
 use Rector\Privatization\Rector\Property\ChangeReadOnlyPropertyWithDefaultValueToConstantRector;
-
-use RectorPrefix202207\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 /**
  * @phpstan-ignore-next-line
