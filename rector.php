@@ -325,12 +325,6 @@ return static function (\Rector\Config\RectorConfig $config): void {
 
 	// Php74
 	$config->rule(TypedPropertyRector::class);
-	$config->ruleWithConfiguration(RenameFunctionRector::class, [
-		'oldFunctionToNewFunction' => [
-			'is_real' => 'is_float',
-			'apache_request_headers' => 'getallheaders',
-		]
-	]);
 	$config->rule(ArrayKeyExistsOnPropertyRector::class);
 	$config->rule(FilterVarToAddSlashesRector::class);
 	$config->rule(ExportToReflectionFunctionRector::class);
@@ -343,6 +337,9 @@ return static function (\Rector\Config\RectorConfig $config): void {
 	$config->rule(AddLiteralSeparatorToNumberRector::class);
 	$config->rule(ChangeReflectionTypeToStringToGetNameRector::class);
 	$config->rule(RestoreDefaultNullToNullableTypePropertyRector::class);
+
+	//PHP8
+	$config->sets([SetList::PHP_80]);
 
 	// Post Rector
 	$config->rule(ClassRenamingPostRector::class);
