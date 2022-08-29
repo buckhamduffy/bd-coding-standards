@@ -1,8 +1,22 @@
 <?php
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
 use PhpCsFixer\Fixer\Basic\BracesFixer;
+use PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer;
+use PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer;
+use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
+use PhpCsFixer\Fixer\ClassNotation\OrderedInterfacesFixer;
+use PhpCsFixer\Fixer\ClassNotation\OrderedTraitsFixer;
+use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
+use PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer;
+use PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
+use PhpCsFixer\Fixer\LanguageConstruct\ExplicitIndirectVariableFixer;
+use PhpCsFixer\Fixer\LanguageConstruct\FunctionToConstantFixer;
+use PhpCsFixer\Fixer\Operator\NewWithBracesFixer;
+use PhpCsFixer\Fixer\Operator\StandardizeIncrementFixer;
+use PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
@@ -128,6 +142,47 @@ return static function (ECSConfig $config): void {
 			OrderedImportsFixer::IMPORT_TYPE_CLASS,
 		],
 		'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
+	]);
+
+	$config->rules([
+		PhpUnitMethodCasingFixer::class,
+		FunctionToConstantFixer::class,
+		ExplicitStringVariableFixer::class,
+		ExplicitIndirectVariableFixer::class,
+		NewWithBracesFixer::class,
+		StandardizeIncrementFixer::class,
+		SelfAccessorFixer::class,
+		MagicConstantCasingFixer::class,
+		AssignmentInConditionSniff::class,
+		NoUselessElseFixer::class,
+		SingleQuoteFixer::class,
+		VisibilityRequiredFixer::class,
+		ClassAttributesSeparationFixer::class,
+		OrderedTraitsFixer::class,
+		OrderedInterfacesFixer::class,
+	]);
+
+	$config->ruleWithConfiguration(
+		OrderedClassElementsFixer::class, [
+		'order' => [
+			'use_trait',
+			'case',
+			'constant_public',
+			'constant_protected',
+			'constant_private',
+			'property_public',
+			'property_protected',
+			'property_private',
+			'construct',
+			'destruct',
+			'magic',
+			'phpunit',
+			'method_public_static',
+			'method_public',
+			'method_protected',
+			'method_private'
+		],
+		'sort_algorithm' => OrderedClassElementsFixer::SORT_ALPHA
 	]);
 
 	$config->paths([

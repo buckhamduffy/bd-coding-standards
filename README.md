@@ -1,21 +1,6 @@
 ## BuckhamDuffy Coding Standards & Testing
 
 #### Usage
-Add the following to your composer.json
-
-```
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://buckhamduffy.github.io/composer/"
-    },
-    {
-      "type": "composer",
-      "url": "https://packagist.org"
-    }
-  ],
-```
-
 Run `composer require --dev buckhamduffy/coding-standards`
 
 ###### ECS
