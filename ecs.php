@@ -151,7 +151,6 @@ return static function (ECSConfig $config): void {
 		ExplicitIndirectVariableFixer::class,
 		NewWithBracesFixer::class,
 		StandardizeIncrementFixer::class,
-		SelfAccessorFixer::class,
 		MagicConstantCasingFixer::class,
 		NoUselessElseFixer::class,
 		SingleQuoteFixer::class,
