@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f86d0053c45a659bc99ac3ceeb1cef10",
+    "content-hash": "7f97ba356d84ea9db3ab9b2c97b0fe76",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1751,12 +1751,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "a3b5244f13edcbfc7a8d1fe0ebf79556dc224670"
+                "reference": "639294ed2c146a1b1a91f2bd4988bdba552b5b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a3b5244f13edcbfc7a8d1fe0ebf79556dc224670",
-                "reference": "a3b5244f13edcbfc7a8d1fe0ebf79556dc224670",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/639294ed2c146a1b1a91f2bd4988bdba552b5b12",
+                "reference": "639294ed2c146a1b1a91f2bd4988bdba552b5b12",
                 "shasum": ""
             },
             "require": {
@@ -1803,7 +1803,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-17T19:32:50+00:00"
+            "time": "2022-09-29T11:23:31+00:00"
         },
         {
             "name": "psr/container",
@@ -2086,27 +2086,27 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.14.0",
+            "version": "0.14.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "fbb3acc7ba3ee3cfc569ea77f48253c378d57751"
+                "reference": "f7fd87b2435835f481e6a94ee28e09af412bd3cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/fbb3acc7ba3ee3cfc569ea77f48253c378d57751",
-                "reference": "fbb3acc7ba3ee3cfc569ea77f48253c378d57751",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f7fd87b2435835f481e6a94ee28e09af412bd3cc",
+                "reference": "f7fd87b2435835f481e6a94ee28e09af412bd3cc",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2|^8.0",
-                "phpstan/phpstan": "^1.8.2"
+                "phpstan/phpstan": "^1.8.6"
             },
             "conflict": {
-                "phpstan/phpdoc-parser": "<1.7",
                 "rector/rector-cakephp": "*",
                 "rector/rector-doctrine": "*",
                 "rector/rector-laravel": "*",
+                "rector/rector-php-parser": "*",
                 "rector/rector-phpoffice": "*",
                 "rector/rector-phpunit": "*",
                 "rector/rector-symfony": "*"
@@ -2117,7 +2117,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.13-dev"
+                    "dev-main": "0.14-dev"
                 }
             },
             "autoload": {
@@ -2132,7 +2132,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.14.0"
+                "source": "https://github.com/rectorphp/rector/tree/0.14.5"
             },
             "funding": [
                 {
@@ -2140,7 +2140,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-17T16:10:11+00:00"
+            "time": "2022-09-29T11:05:42+00:00"
         },
         {
             "name": "seld/jsonlint",
