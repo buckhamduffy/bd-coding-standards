@@ -1747,16 +1747,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.8.x-dev",
+            "version": "1.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "a3b5244f13edcbfc7a8d1fe0ebf79556dc224670"
+                "reference": "20855d7ce42aded4a70a44e1b800a96b4b0abfff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a3b5244f13edcbfc7a8d1fe0ebf79556dc224670",
-                "reference": "a3b5244f13edcbfc7a8d1fe0ebf79556dc224670",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/20855d7ce42aded4a70a44e1b800a96b4b0abfff",
+                "reference": "20855d7ce42aded4a70a44e1b800a96b4b0abfff",
                 "shasum": ""
             },
             "require": {
@@ -1787,7 +1787,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.x"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.x"
             },
             "funding": [
                 {
@@ -1803,7 +1803,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-17T19:32:50+00:00"
+            "time": "2022-09-30T13:07:22+00:00"
         },
         {
             "name": "psr/container",
@@ -4343,7 +4343,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpstan/phpstan": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
