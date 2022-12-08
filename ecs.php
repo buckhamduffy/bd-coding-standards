@@ -2,6 +2,7 @@
 
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
 use PhpCsFixer\Fixer\Basic\BracesFixer;
+use PhpCsFixer\Fixer\Basic\CurlyBracesPositionFixer;
 use PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer;
 use PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
@@ -168,5 +169,5 @@ return static function (ECSConfig $config): void {
 	]);
 
 	$config->indentation('tab');
-	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, BracesFixer::class]);
+	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, BracesFixer::class, CurlyBracesPositionFixer::class]);
 };
