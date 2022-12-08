@@ -1,11 +1,9 @@
 <?php
 
 declare(strict_types=1);
+use Rector\Config\RectorConfig;
 
-use Rector\CodeQuality\Rector\FunctionLike\SimplifyUselessVariableRector;
-use Rector\Php55\Rector\FuncCall\GetCalledClassToStaticClassRector;
 use Rector\Set\ValueObject\SetList;
-use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php70\Rector\List_\EmptyListRector;
 use Rector\Php72\Rector\Assign\ListEachRector;
@@ -22,7 +20,6 @@ use Rector\CodeQuality\Rector\For_\ForToForeachRector;
 use Rector\CodeQuality\Rector\If_\ShortenElseIfRector;
 use Rector\Php70\Rector\FuncCall\RandomFunctionRector;
 use Rector\Php72\Rector\FuncCall\GetClassOnNullRector;
-use Rector\DeadCode\Rector\Cast\RecastingRemovalRector;
 use Rector\Php72\Rector\FuncCall\StringifyDefineRector;
 use Rector\Php73\Rector\FuncCall\SensitiveDefineRector;
 use Rector\Php72\Rector\While_\WhileEachToForeachRector;
@@ -30,7 +27,6 @@ use Rector\EarlyReturn\Rector\If_\RemoveAlwaysElseRector;
 use Rector\Php71\Rector\Assign\AssignArrayToStringRector;
 use Rector\Php73\Rector\FuncCall\ArrayKeyFirstLastRector;
 use Rector\Php74\Rector\Double\RealToFloatTypeCastRector;
-use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
 use Rector\CodeQuality\Rector\Assign\CombinedAssignRector;
 use Rector\DeadCode\Rector\If_\RemoveDeadInstanceOfRector;
 use Rector\Php70\Rector\ClassMethod\Php4ConstructorRector;
@@ -54,7 +50,6 @@ use Rector\Php74\Rector\FuncCall\FilterVarToAddSlashesRector;
 use Rector\CodeQuality\Rector\Foreach_\ForeachToInArrayRector;
 use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\Php52\Rector\Switch_\ContinueToBreakInSwitchRector;
-
 use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
 use Rector\Php70\Rector\Ternary\TernaryToNullCoalescingRector;
 use Rector\CodeQuality\Rector\Switch_\SingularSwitchToIfRector;
@@ -64,7 +59,6 @@ use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfElseToTernaryRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfNotNullReturnRector;
 use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
-use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Php74\Rector\FuncCall\ArrayKeyExistsOnPropertyRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyStrposLowerRector;
 use Rector\CodingStyle\Rector\Switch_\BinarySwitchToIfElseRector;
@@ -73,19 +67,16 @@ use Rector\DeadCode\Rector\Foreach_\RemoveUnusedForeachKeyRector;
 use Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector;
 use Rector\Php72\Rector\FuncCall\IsObjectOnIncompleteClassRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyRegexPatternRector;
-use Rector\DeadCode\Rector\MethodCall\RemoveEmptyMethodCallRector;
-use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php70\Rector\Switch_\ReduceMultipleDefaultSwitchRector;
 use Rector\Php72\Rector\FuncCall\ParseStrWithResultArgumentRector;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\CodeQuality\Rector\ClassMethod\NarrowUnionTypeDocRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyInArrayValuesRector;
 use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
-use Rector\DeadCode\Rector\ClassMethod\RemoveDeadConstructorRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\If_\SimplifyIfElseWithSameContentRector;
+use Rector\Php55\Rector\FuncCall\GetCalledClassToStaticClassRector;
 use Rector\CodeQuality\Rector\FuncCall\RemoveSoleValueSprintfRector;
-use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\Php70\Rector\Break_\BreakNotInLoopOrSwitchToReturnRector;
 use Rector\Php70\Rector\FunctionLike\ExceptionHandlerTypehintRector;
@@ -105,10 +96,10 @@ use Rector\DeadCode\Rector\FunctionLike\RemoveDuplicatedIfReturnRector;
 use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveDelegatingParentCallRector;
 use Rector\DeadCode\Rector\Return_\RemoveDeadConditionAboveReturnRector;
-use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
 use Rector\Php53\Rector\FuncCall\DirNameFileConstantToDirConstantRector;
 use Rector\CodeQuality\Rector\Assign\SplitListAssignToSeparateLineRector;
 use Rector\CodeQuality\Rector\Foreach_\SimplifyForeachToCoalescingRector;
+use Rector\CodeQuality\Rector\FunctionLike\SimplifyUselessVariableRector;
 use Rector\CodeQuality\Rector\LogicalAnd\AndAssignsToSeparateLinesRector;
 use Rector\Php72\Rector\Assign\ReplaceEachAssignmentWithKeyCurrentRector;
 use Rector\Php72\Rector\FuncCall\CreateFunctionToAnonymousFunctionRector;
@@ -121,37 +112,28 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedConstructorParamRector;
 use Rector\DeadCode\Rector\StaticCall\RemoveParentCallWithoutParentRector;
 use Rector\CodeQuality\Rector\Foreach_\UnusedForeachValueToArrayKeysRector;
 use Rector\CodingStyle\Rector\Property\AddFalseDefaultToBoolPropertyRector;
-use Rector\Privatization\Rector\Class_\ChangeLocalPropertyToVariableRector;
 use Rector\Php70\Rector\MethodCall\ThisCallOnStaticMethodToStaticCallRector;
 use Rector\CodeQuality\Rector\Include_\AbsolutizeRequireAndIncludePathRector;
 use Rector\DeadCode\Rector\ClassConst\RemoveUnusedPrivateClassConstantRector;
 use Rector\DeadCode\Rector\Ternary\TernaryToBooleanOrFalseToBooleanAndRector;
 use Rector\EarlyReturn\Rector\If_\ChangeIfElseValueAssignToEarlyReturnRector;
 use Rector\Php70\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector;
-use Rector\CodingStyle\Rector\FuncCall\CountArrayToEmptyArrayComparisonRector;
 use Rector\Php74\Rector\MethodCall\ChangeReflectionTypeToStringToGetNameRector;
 use Rector\CodeQuality\Rector\FuncCall\ArrayMergeOfNonArraysToSimpleArrayRector;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPrivateMethodParameterRector;
-use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
-use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
 use Rector\Restoration\Rector\Property\MakeTypedPropertyNullableIfCheckedRector;
 use Rector\CodeQuality\Rector\FuncCall\ArrayKeysAndInArrayToArrayKeyExistsRector;
 use Rector\CodingStyle\Rector\ClassConst\SplitGroupedConstantsAndPropertiesRector;
-use Rector\Restoration\Rector\ClassLike\UpdateFileNameByClassNameFileSystemRector;
 use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
-use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchExprVariableRector;
 use Rector\CodeQuality\Rector\Ternary\ArrayKeyExistsTernaryThenValueToCoalescingRector;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
 use Rector\CodingStyle\Rector\ClassMethod\MakeInheritedMethodVisibilitySameAsParentRector;
 use Rector\CodeQuality\Rector\FunctionLike\RemoveAlwaysTrueConditionSetInConstructorRector;
-use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchMethodCallReturnTypeRector;
-use Rector\Privatization\Rector\Property\ChangeReadOnlyPropertyWithDefaultValueToConstantRector;
 
 /**
  * @phpstan-ignore-next-line
  */
-return static function (\Rector\Config\RectorConfig $config): void {
+return static function(RectorConfig $config): void {
 	$config->paths([
 		getcwd() . '/app'
 	]);
@@ -214,7 +196,7 @@ return static function (\Rector\Config\RectorConfig $config): void {
 	// $config->rule(RecastingRemovalRector::class);
 	$config->rule(RemoveAlwaysTrueIfConditionRector::class);
 	$config->rule(RemoveDeadConditionAboveReturnRector::class);
-	$config->rule(RemoveDeadConstructorRector::class);
+	// $config->rule(RemoveDeadConstructorRector::class);
 	$config->rule(RemoveDeadIfForeachForRector::class);
 	$config->rule(RemoveDeadInstanceOfRector::class);
 	$config->rule(RemoveDeadReturnRector::class);
@@ -340,6 +322,7 @@ return static function (\Rector\Config\RectorConfig $config): void {
 
 	//PHP8
 	$config->sets([SetList::PHP_80]);
+	$config->sets([SetList::PHP_81]);
 
 	// Post Rector
 	$config->rule(ClassRenamingPostRector::class);
