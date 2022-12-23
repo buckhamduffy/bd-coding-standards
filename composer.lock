@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01672916bd03b880dfcac07df4b3498f",
+    "content-hash": "9e1de223bccb2821904493f466066f83",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -4212,16 +4212,16 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "11.1.16",
+            "version": "11.1.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "32ebd57f0f47713540df8ea39134adaa9d912fae"
+                "reference": "7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/32ebd57f0f47713540df8ea39134adaa9d912fae",
-                "reference": "32ebd57f0f47713540df8ea39134adaa9d912fae",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1",
+                "reference": "7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1",
                 "shasum": ""
             },
             "require": {
@@ -4251,7 +4251,7 @@
             ],
             "description": "Prefixed scoped version of ECS package",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/11.1.16"
+                "source": "https://github.com/symplify/easy-coding-standard/tree/11.1.24"
             },
             "funding": [
                 {
@@ -4263,7 +4263,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-27T10:48:13+00:00"
+            "time": "2022-12-23T15:01:12+00:00"
         },
         {
             "name": "voku/portable-ascii",
