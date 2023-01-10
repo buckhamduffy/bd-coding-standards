@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01672916bd03b880dfcac07df4b3498f",
+    "content-hash": "bb2dadf96ac00e2b77314a5543bc4bb0",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1747,16 +1747,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.x-dev",
+            "version": "1.10.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "5a0e6a30b43fcdffbbe6b7ed5e5e4db67e89918c"
+                "reference": "e82a70327b9d0300b47e52b411e9566049d30cdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5a0e6a30b43fcdffbbe6b7ed5e5e4db67e89918c",
-                "reference": "5a0e6a30b43fcdffbbe6b7ed5e5e4db67e89918c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e82a70327b9d0300b47e52b411e9566049d30cdb",
+                "reference": "e82a70327b9d0300b47e52b411e9566049d30cdb",
                 "shasum": ""
             },
             "require": {
@@ -1787,7 +1787,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.x"
+                "source": "https://github.com/phpstan/phpstan/tree/1.10.x"
             },
             "funding": [
                 {
@@ -1803,7 +1803,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-17T14:53:46+00:00"
+            "time": "2023-01-10T16:05:23+00:00"
         },
         {
             "name": "psr/container",
@@ -2086,28 +2086,26 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.14.6",
+            "version": "0.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "e61574288661334155de6e5f0f45497285abad5d"
+                "reference": "1dcdf54ebf502d9f7cf9b5f89df613da1774d050"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e61574288661334155de6e5f0f45497285abad5d",
-                "reference": "e61574288661334155de6e5f0f45497285abad5d",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/1dcdf54ebf502d9f7cf9b5f89df613da1774d050",
+                "reference": "1dcdf54ebf502d9f7cf9b5f89df613da1774d050",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2|^8.0",
-                "phpstan/phpstan": "^1.8.7"
+                "phpstan/phpstan": "^1.9.7"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
                 "rector/rector-downgrade-php": "*",
-                "rector/rector-laravel": "*",
                 "rector/rector-php-parser": "*",
-                "rector/rector-phpoffice": "*",
                 "rector/rector-phpunit": "*",
                 "rector/rector-symfony": "*"
             },
@@ -2132,7 +2130,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.14.6"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.4"
             },
             "funding": [
                 {
@@ -2140,7 +2138,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-15T22:58:22+00:00"
+            "time": "2023-01-10T11:09:49+00:00"
         },
         {
             "name": "seld/jsonlint",
