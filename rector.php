@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 use Rector\Config\RectorConfig;
-
 use Rector\Set\ValueObject\SetList;
+
+use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
+use RectorLaravel\Set\LaravelSetList;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php70\Rector\List_\EmptyListRector;
 use Rector\Php72\Rector\Assign\ListEachRector;
@@ -138,7 +140,7 @@ return static function(RectorConfig $config): void {
 		getcwd() . '/app'
 	]);
 
-	$config->phpVersion(PhpVersion::PHP_74);
+	$config->phpVersion(PhpVersion::PHP_82);
 	$config->importNames();
 
 	// Code Quality
@@ -319,10 +321,17 @@ return static function(RectorConfig $config): void {
 	$config->rule(AddLiteralSeparatorToNumberRector::class);
 	$config->rule(ChangeReflectionTypeToStringToGetNameRector::class);
 	$config->rule(RestoreDefaultNullToNullableTypePropertyRector::class);
+	$config->rule(AddGenericReturnTypeToRelationsRector::class);
 
-	//PHP8
-	$config->sets([SetList::PHP_80]);
-	$config->sets([SetList::PHP_81]);
+	// PHP8
+	$config->sets([
+		SetList::PHP_80,
+		SetList::PHP_81,
+		LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
+		LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
+		LaravelSetList::LARAVEL_80,
+		LaravelSetList::LARAVEL_90,
+	]);
 
 	// Post Rector
 	$config->rule(ClassRenamingPostRector::class);
