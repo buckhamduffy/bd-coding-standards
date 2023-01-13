@@ -365,5 +365,5 @@ return static function(ECSConfig $config): void {
 	]);
 
 	$config->indentation('tab');
-	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, BracesFixer::class, CurlyBracesPositionFixer::class]);
+	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, \PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff::class]);
 };
