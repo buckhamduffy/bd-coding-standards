@@ -1,0 +1,54 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  discussions: write
+  packages: write
+
+concurrency:
+  group: release-${{github.ref}}
+  cancel-in-progress: true
+
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Conventional commits check
+        uses: oknozor/cocogitto-action@v3
+        id: version
+        with:
+          check: true
+          release: true
+          check-latest-tag-only: true
+          git-user: 'BuckhamBot'
+          git-user-email: 'buckhambot@users.noreply.github.com'
+
+      - name: Generate changelog
+        run: cog changelog > CHANGELOG.md
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: BuckhamBot
+          author_email: buckhambot@users.noreply.github.com
+          default_author: github_actions
+          message: "chore: update changelog"
+          push: true
+
+      - name: Latest changeset for release
+        run: cog changelog --at ${{ steps.version.outputs.version }} > CHANGELOG.md
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG.md
+          tag_name: ${{ steps.version.outputs.version }}
