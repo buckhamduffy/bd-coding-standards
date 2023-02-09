@@ -1,17 +1,21 @@
-## v3.1.0 - 2023-01-24
+## v3.1.1 - 2023-02-09
+#### Bug Fixes
+- don't check config/test/database - (6580fbb) - Aaron Florey
+#### Miscellaneous Chores
+- **(version)** v3.1.1 - (7bfaa65) - BuckhamBot
+
+- - -
+
+## v3.1.0 - 2023-02-09
 #### Features
 - setup auto releasing - (cd97fd8) - Aaron Florey
 #### Miscellaneous Chores
 - **(version)** v3.1.0 - (d039b9b) - BuckhamBot
+- update changelog - (e4c78ad) - BuckhamBot
 
 - - -
-## v3.1.1 - 2023-02-09
-#### Bug Fixes
-- don't check config/test/database - (6580fbb) - Aaron Florey
-- - -
 
-
-## v3.0.1 - 2023-01-24
+## v3.0.1 - 2023-02-09
 
 - - -
 
