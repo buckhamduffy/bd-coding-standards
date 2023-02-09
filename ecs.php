@@ -357,9 +357,6 @@ return static function(ECSConfig $config): void {
 
 	$config->paths([
 		getcwd() . '/app',
-		getcwd() . '/tests',
-		getcwd() . '/database',
-		getcwd() . '/config',
 	]);
 
 	$config->indentation('tab');
