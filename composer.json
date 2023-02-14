@@ -8,7 +8,7 @@
     "rector/rector": "^0.14",
     "phpstan/phpstan": "^1.0",
     "nunomaduro/larastan": "^2.0",
-    "laravel/framework": "^9.33",
+    "laravel/framework": "^9.33 || ^10.0",
     "driftingly/rector-laravel": "^0.14"
   },
   "authors": [
