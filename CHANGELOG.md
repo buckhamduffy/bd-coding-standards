@@ -5,6 +5,11 @@
 - **(version)** v3.2.0 - (ae939c6) - BuckhamBot
 
 - - -
+## v3.2.1 - 2023-02-26
+#### Bug Fixes
+- remove deprecated rector rules - (1450310) - Aaron Florey
+- - -
+
 
 ## v3.1.1 - 2023-02-26
 #### Bug Fixes
