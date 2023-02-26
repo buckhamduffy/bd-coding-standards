@@ -5,6 +5,11 @@
 - **(version)** v3.1.1 - (7bfaa65) - BuckhamBot
 
 - - -
+## v3.2.0 - 2023-02-26
+#### Features
+- update required versions - (b274aa1) - Aaron Florey
+- - -
+
 
 ## v3.1.0 - 2023-02-09
 #### Features
