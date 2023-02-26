@@ -349,7 +349,7 @@ return static function(ECSConfig $config): void {
 	$config->rule(NoUnusedImportsFixer::class);
 
 	$config->ruleWithConfiguration(OrderedImportsFixer::class, [
-		'imports_order'  => [
+		'imports_order' => [
 			OrderedImportsFixer::IMPORT_TYPE_CONST,
 			OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
 			OrderedImportsFixer::IMPORT_TYPE_CLASS,
