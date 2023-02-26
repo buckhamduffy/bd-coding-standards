@@ -1,15 +1,19 @@
+## v3.2.1 - 2023-02-26
+#### Bug Fixes
+- remove deprecated rector rules - (1450310) - Aaron Florey
+#### Miscellaneous Chores
+- **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
+
+- - -
+
 ## v3.2.0 - 2023-02-26
 #### Features
 - update required versions - (b274aa1) - Aaron Florey
 #### Miscellaneous Chores
 - **(version)** v3.2.0 - (ae939c6) - BuckhamBot
+- update changelog - (1e80bfb) - BuckhamBot
 
 - - -
-## v3.2.1 - 2023-02-26
-#### Bug Fixes
-- remove deprecated rector rules - (1450310) - Aaron Florey
-- - -
-
 
 ## v3.1.1 - 2023-02-26
 #### Bug Fixes
