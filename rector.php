@@ -1,10 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\SetList;
 
-use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use RectorLaravel\Set\LaravelSetList;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php70\Rector\List_\EmptyListRector;
@@ -16,7 +16,6 @@ use Rector\Php71\Rector\BooleanOr\IsIterableRector;
 use Rector\Php70\Rector\FuncCall\MultiDirnameRector;
 use Rector\Php53\Rector\Ternary\TernaryToElvisRector;
 use Rector\Php70\Rector\Assign\ListSplitStringRector;
-use Rector\Php74\Rector\Property\TypedPropertyRector;
 use Rector\PostRector\Rector\ClassRenamingPostRector;
 use Rector\CodeQuality\Rector\For_\ForToForeachRector;
 use Rector\CodeQuality\Rector\If_\ShortenElseIfRector;
@@ -114,6 +113,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedConstructorParamRector;
 use Rector\DeadCode\Rector\StaticCall\RemoveParentCallWithoutParentRector;
 use Rector\CodeQuality\Rector\Foreach_\UnusedForeachValueToArrayKeysRector;
 use Rector\CodingStyle\Rector\Property\AddFalseDefaultToBoolPropertyRector;
+use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use Rector\Php70\Rector\MethodCall\ThisCallOnStaticMethodToStaticCallRector;
 use Rector\CodeQuality\Rector\Include_\AbsolutizeRequireAndIncludePathRector;
 use Rector\DeadCode\Rector\ClassConst\RemoveUnusedPrivateClassConstantRector;
@@ -125,7 +125,6 @@ use Rector\CodeQuality\Rector\FuncCall\ArrayMergeOfNonArraysToSimpleArrayRector;
 use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
 use Rector\Restoration\Rector\Property\MakeTypedPropertyNullableIfCheckedRector;
 use Rector\CodeQuality\Rector\FuncCall\ArrayKeysAndInArrayToArrayKeyExistsRector;
-use Rector\CodingStyle\Rector\ClassConst\SplitGroupedConstantsAndPropertiesRector;
 use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
 use Rector\CodeQuality\Rector\Ternary\ArrayKeyExistsTernaryThenValueToCoalescingRector;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
@@ -184,13 +183,10 @@ return static function(RectorConfig $config): void {
 	$config->rule(AddFalseDefaultToBoolPropertyRector::class);
 	$config->rule(BinarySwitchToIfElseRector::class);
 	$config->rule(CatchExceptionNameMatchingTypeRector::class);
-	// $config->rule(CountArrayToEmptyArrayComparisonRector::class);
 	$config->rule(EncapsedStringsToSprintfRector::class);
 	$config->rule(MakeInheritedMethodVisibilitySameAsParentRector::class);
-	// $config->rule(PreslashSimpleFunctionRector::class);
 	$config->rule(SeparateMultiUseImportsRector::class);
 	$config->rule(SplitDoubleAssignRector::class);
-	$config->rule(SplitGroupedConstantsAndPropertiesRector::class);
 	$config->rule(UseIncrementAssignRector::class);
 	$config->rule(SymplifyQuoteEscapeRector::class);
 
@@ -227,27 +223,12 @@ return static function(RectorConfig $config): void {
 	$config->rule(ChangeNestedIfsToEarlyReturnRector::class);
 	$config->rule(PreparedValueToEarlyReturnRector::class);
 	$config->rule(RemoveAlwaysElseRector::class);
-	//
-	// // Naming
-	// $config->rule(RenameForeachValueVariableToMatchExprVariableRector::class);
-	// $config->rule(RenameForeachValueVariableToMatchMethodCallReturnTypeRector::class);
-	// $config->rule(RenameParamToMatchTypeRector::class);
-	// $config->rule(RenamePropertyToMatchTypeRector::class);
-	// $config->rule(RenameVariableToMatchMethodCallReturnTypeRector::class);
-	// $config->rule(RenameVariableToMatchNewTypeRector::class);
-	//
+
 	// Typed
 	$config->rule(RestoreDefaultNullToNullableTypePropertyRector::class);
-	$config->rule(TypedPropertyRector::class);
-
-	// // Privatization
-	// $config->rule(ChangeLocalPropertyToVariableRector::class);
-	// $config->rule(ChangeReadOnlyPropertyWithDefaultValueToConstantRector::class);
-	// $config->rule(PrivatizeLocalGetterToPropertyRector::class);
 
 	// Restoration
 	$config->rule(MakeTypedPropertyNullableIfCheckedRector::class);
-	// $config->rule(UpdateFileNameByClassNameFileSystemRector::class);
 
 	// Types
 	$config->sets([SetList::TYPE_DECLARATION]);
@@ -284,7 +265,6 @@ return static function(RectorConfig $config): void {
 	$config->rule(IsIterableRector::class);
 	$config->rule(MultiExceptionCatchRector::class);
 	$config->rule(AssignArrayToStringRector::class);
-	// $config->rule(\Rector\Php71\Rector\FuncCall\CountOnNullRector::class);
 	$config->rule(RemoveExtraParametersRector::class);
 	$config->rule(BinaryOpBetweenNumberAndStringRector::class);
 
@@ -308,7 +288,6 @@ return static function(RectorConfig $config): void {
 	$config->rule(StringifyStrNeedlesRector::class);
 
 	// Php74
-	$config->rule(TypedPropertyRector::class);
 	$config->rule(ArrayKeyExistsOnPropertyRector::class);
 	$config->rule(FilterVarToAddSlashesRector::class);
 	$config->rule(ExportToReflectionFunctionRector::class);
