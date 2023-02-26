@@ -337,6 +337,8 @@ return static function(ECSConfig $config): void {
 			'size_of'         => 'count',
 			'print'           => 'echo',
 			'create_function' => null,
+			'dump'            => null,
+			'ray'             => null,
 		]
 	]);
 
