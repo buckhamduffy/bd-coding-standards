@@ -9,7 +9,7 @@
     "phpstan/phpstan": "^1.10",
     "nunomaduro/larastan": "^2.4",
     "laravel/framework": "9.*|10.*",
-    "driftingly/rector-laravel": "^0.15"
+    "driftingly/rector-laravel": "^0.15 || ^0.16"
   },
   "authors": [
     {
