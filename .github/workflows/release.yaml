@@ -48,7 +48,7 @@ jobs:
         run: cog changelog --at ${{ steps.version.outputs.version }} > CHANGELOG.md
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           body_path: CHANGELOG.md
           tag_name: ${{ steps.version.outputs.version }}
