@@ -27,6 +27,7 @@ use PhpCsFixer\Fixer\Casing\MagicMethodCasingFixer;
 use PhpCsFixer\Fixer\CastNotation\NoUnsetCastFixer;
 use PhpCsFixer\Fixer\ControlStructure\IncludeFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitConstructFixer;
+use Symplify\EasyCodingStandard\ValueObject\Option;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Casing\IntegerLiteralCaseFixer;
 use PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer;
@@ -49,7 +50,6 @@ use PhpCsFixer\Fixer\ArrayNotation\TrimArraySpacesFixer;
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
 use PhpCsFixer\Fixer\Operator\StandardizeIncrementFixer;
 use PhpCsFixer\Fixer\Semicolon\SpaceAfterSemicolonFixer;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use PhpCsFixer\Fixer\Comment\SingleLineCommentStyleFixer;
 use PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer;
 use PhpCsFixer\Fixer\Operator\TernaryOperatorSpacesFixer;
@@ -157,55 +157,52 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpaci
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff;
 
-/**
- * @phpstan-ignore-next-line
- */
-return static function(ECSConfig $config): void {
-	$config->sets([SetList::PSR_12]);
-
-	$config->ruleWithConfiguration(ArraySyntaxFixer::class, [
+return ECSConfig::configure()
+	->withPaths([
+		getcwd() . '/app',
+	])
+	->withConfiguredRule(ArraySyntaxFixer::class, [
 		'syntax' => 'short',
-	]);
-
-	$config->rule(UnconditionalIfStatementSniff::class);
-	$config->rule(JumbledIncrementerSniff::class);
-	$config->rule(EmptyStatementSniff::class);
-	$config->rule(SpaceAfterCastSniff::class);
-	$config->rule(OpeningFunctionBraceBsdAllmanSniff::class);
-	$config->rule(FunctionCallArgumentSpacingSniff::class);
-	$config->rule(ConstructorNameSniff::class);
-	$config->rule(UpperCaseConstantNameSniff::class);
-	$config->rule(DisallowShortOpenTagSniff::class);
-	$config->rule(LowerCaseConstantSniff::class);
-	$config->rule(LowerCaseKeywordSniff::class);
-	$config->rule(NoSilencedErrorsSniff::class);
-	$config->rule(SyntaxSniff::class);
-	$config->rule(UnnecessaryStringConcatSniff::class);
-	$config->rule(DisallowSpaceIndentSniff::class);
-	$config->rule(ClassDeclarationSniff::class);
-	$config->rule(ValidClassNameSniff::class);
-	$config->rule(ScopeClosingBraceSniff::class);
-	$config->rule(CamelCapsMethodNameSniff::class);
-	$config->rule(PropertyDeclarationSniff::class);
-	$config->rule(ArrayBracketSpacingSniff::class);
-	$config->rule(ControlSignatureSniff::class);
-	$config->rule(LowercaseDeclarationSniff::class);
-	$config->rule(DisallowSizeFunctionsInLoopsSniff::class);
-	$config->rule(LowercasePHPFunctionsSniff::class);
-	$config->rule(NonExecutableCodeSniff::class);
-	$config->rule(ControlStructureSpacingSniff::class);
-	$config->rule(LanguageConstructSpacingSniff::class);
-	$config->rule(LogicalOperatorSpacingSniff::class);
-	$config->ruleWithConfiguration(ObjectOperatorSpacingSniff::class, [
+	])
+	->withRules([
+		UnconditionalIfStatementSniff::class,
+		JumbledIncrementerSniff::class,
+		EmptyStatementSniff::class,
+		SpaceAfterCastSniff::class,
+		OpeningFunctionBraceBsdAllmanSniff::class,
+		FunctionCallArgumentSpacingSniff::class,
+		ConstructorNameSniff::class,
+		UpperCaseConstantNameSniff::class,
+		DisallowShortOpenTagSniff::class,
+		LowerCaseConstantSniff::class,
+		LowerCaseKeywordSniff::class,
+		NoSilencedErrorsSniff::class,
+		SyntaxSniff::class,
+		UnnecessaryStringConcatSniff::class,
+		DisallowSpaceIndentSniff::class,
+		ClassDeclarationSniff::class,
+		ValidClassNameSniff::class,
+		ScopeClosingBraceSniff::class,
+		CamelCapsMethodNameSniff::class,
+		PropertyDeclarationSniff::class,
+		ArrayBracketSpacingSniff::class,
+		ControlSignatureSniff::class,
+		LowercaseDeclarationSniff::class,
+		DisallowSizeFunctionsInLoopsSniff::class,
+		LowercasePHPFunctionsSniff::class,
+		NonExecutableCodeSniff::class,
+		ControlStructureSpacingSniff::class,
+		LanguageConstructSpacingSniff::class,
+		LogicalOperatorSpacingSniff::class,
+	])
+	->withConfiguredRule(ObjectOperatorSpacingSniff::class, [
 		'ignoreNewlines' => true,
-	]);
-	$config->rule(OperatorSpacingSniff::class);
-	$config->rule(PropertyLabelSpacingSniff::class);
-	$config->rule(SemicolonSpacingSniff::class);
-	$config->rule(ScopeKeywordSpacingSniff::class);
-
-	$config->rules([
-
+	])
+	->withRules([
+		OperatorSpacingSniff::class,
+		PropertyLabelSpacingSniff::class,
+		SemicolonSpacingSniff::class,
+		ScopeKeywordSpacingSniff::class,
 		NoSuperfluousPhpdocTagsFixer::class,
 		FullyQualifiedStrictTypesFixer::class,
 		GlobalNamespaceImportFixer::class,
@@ -318,17 +315,14 @@ return static function(ECSConfig $config): void {
 		VisibilityRequiredFixer::class,
 		OrderedTraitsFixer::class,
 		OrderedInterfacesFixer::class,
-	]);
-
-	$config->ruleWithConfiguration(BinaryOperatorSpacesFixer::class, [
+	])
+	->withConfiguredRule(BinaryOperatorSpacesFixer::class, [
 		'operators' => [
 			'=>' => BinaryOperatorSpacesFixer::ALIGN_SINGLE_SPACE_MINIMAL,
 		],
-	]);
-
-	$config->ruleWithConfiguration(FunctionDeclarationFixer::class, ['closure_function_spacing' => FunctionDeclarationFixer::SPACING_NONE]);
-
-	$config->ruleWithConfiguration(ForbiddenFunctionsSniff::class, [
+	])
+	->withConfiguredRule(FunctionDeclarationFixer::class, ['closure_function_spacing' => FunctionDeclarationFixer::SPACING_NONE])
+	->withConfiguredRule(ForbiddenFunctionsSniff::class, [
 		'forbiddenFunctions' => [
 			'eval'            => null,
 			'dd'              => null,
@@ -340,27 +334,23 @@ return static function(ECSConfig $config): void {
 			'dump'            => null,
 			'ray'             => null,
 		]
-	]);
-
-	$config->rule(ExplicitStringVariableFixer::class);
-	$config->rule(SingleQuoteFixer::class);
-
-	$config->rule(CommentedOutCodeSniff::class);
-	$config->rule(NoUnusedImportsFixer::class);
-
-	$config->ruleWithConfiguration(OrderedImportsFixer::class, [
+	])
+	->withRules([
+		ExplicitStringVariableFixer::class,
+		SingleQuoteFixer::class,
+		CommentedOutCodeSniff::class,
+		NoUnusedImportsFixer::class,
+	])
+	->withConfiguredRule(OrderedImportsFixer::class, [
 		'imports_order' => [
 			OrderedImportsFixer::IMPORT_TYPE_CONST,
 			OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
 			OrderedImportsFixer::IMPORT_TYPE_CLASS,
 		],
 		'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
+	])
+	->withSpacing(Option::INDENTATION_TAB)
+	->withSkip([
+		NoBlankLinesAfterClassOpeningFixer::class,
+		OpeningFunctionBraceBsdAllmanSniff::class
 	]);
-
-	$config->paths([
-		getcwd() . '/app',
-	]);
-
-	$config->indentation('tab');
-	$config->skip([NoBlankLinesAfterClassOpeningFixer::class, \PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff::class]);
-};
