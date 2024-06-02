@@ -4,12 +4,12 @@
   "type": "library",
   "require": {
     "php": ">=8.2.1",
-    "symplify/easy-coding-standard": "12.1.14",
-    "rector/rector": "1.0.3",
+    "symplify/easy-coding-standard": "12.2.1",
+    "rector/rector": "1.1.0",
     "phpstan/phpstan": "^1.10.62",
-    "nunomaduro/larastan": "2.9.2",
+    "nunomaduro/larastan": "2.9.7",
     "laravel/framework": "^11.0",
-    "driftingly/rector-laravel": "1.0"
+    "driftingly/rector-laravel": "1.2.0"
   },
   "authors": [
     {
