@@ -267,7 +267,5 @@ return RectorConfig::configure()
 		LaravelSetList::LARAVEL_110,
 	])
 	->withPhpSets(
-		php80: true,
-		php81: true,
-		php82: true,
+		php83: true,
 	);
