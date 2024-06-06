@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v4.0.1 - 2024-06-06
+#### Bug Fixes
+- change php sets - (d5b605c) - Aaron Florey
+
+- - -
+
 ## v4.0.0 - 2024-03-16
 #### Bug Fixes
 - remove deprecated rector rules - (d5c821e) - Aaron Florey
