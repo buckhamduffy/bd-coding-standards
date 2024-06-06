@@ -348,7 +348,6 @@ return ECSConfig::configure()
 		NoUnusedImportsFixer::class,
 		BlankLineBeforeStatementFixer::class,
 		BlankLineBetweenImportGroupsFixer::class,
-		ClassAttributesSeparationFixer::class,
 		IndentationTypeFixer::class,
 		StatementIndentationFixer::class
 	])
@@ -359,6 +358,15 @@ return ECSConfig::configure()
 			OrderedImportsFixer::IMPORT_TYPE_CLASS,
 		],
 		'sort_algorithm' => OrderedImportsFixer::SORT_LENGTH,
+	])
+	->withConfiguredRule(ClassAttributesSeparationFixer::class, [
+		'elements' => [
+			'const' => ClassAttributesSeparationFixer::SPACING_NONE,
+			'method' => ClassAttributesSeparationFixer::SPACING_ONE,
+			'property' => ClassAttributesSeparationFixer::SPACING_NONE,
+			'trait_import' => ClassAttributesSeparationFixer::SPACING_NONE,
+			'case' => ClassAttributesSeparationFixer::SPACING_NONE
+		]
 	])
 	->withSpacing(Option::INDENTATION_TAB)
 	->withSkip([
