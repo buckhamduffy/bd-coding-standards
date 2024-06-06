@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v5.1.0 - 2024-06-06
+#### Features
+- docblock fixes, add rector rule - (bacf372) - Aaron Florey
+
+- - -
+
 ## v5.0.1 - 2024-06-06
 #### Bug Fixes
 - spacing in classes rule - (babfcdc) - Aaron Florey
