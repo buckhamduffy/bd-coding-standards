@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v5.2.0 - 2024-06-06
+#### Features
+- ecs withRules overwrites the previous, so not all rules were included - (47385b3) - Aaron Florey
+
+- - -
+
 ## v5.1.0 - 2024-06-06
 #### Features
 - docblock fixes, add rector rule - (bacf372) - Aaron Florey
