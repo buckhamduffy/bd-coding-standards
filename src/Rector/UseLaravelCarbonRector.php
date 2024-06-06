@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace BuckhamDuffy\CodingStandards\Rector;
 
@@ -108,9 +108,11 @@ CODE_SAMPLE
 					if (!$param->type) {
 						continue;
 					}
+
 					if (!($type = $this->refactorPropertyType($param->type))) {
 						continue;
 					}
+
 					$param->type = $type;
 					$stmt->params[$paramIndex] = $param;
 					$node->stmts[$stmtIndex] = $stmt;
