@@ -38,6 +38,7 @@ use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\New_\NewStaticToNewSelfRector;
 use Rector\CodingStyle\Rector\Plus\UseIncrementAssignRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
+use RectorLaravel\Rector\Namespace_\FactoryDefinitionRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfReturnBoolRector;
 use Rector\CodingStyle\Rector\Assign\SplitDoubleAssignRector;
 use Rector\DeadCode\Rector\For_\RemoveDeadIfForeachForRector;
@@ -49,9 +50,13 @@ use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\Php52\Rector\Switch_\ContinueToBreakInSwitchRector;
 use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
 use Rector\Php70\Rector\Ternary\TernaryToNullCoalescingRector;
+use RectorLaravel\Rector\StaticCall\RouteActionCallableRector;
+use BuckhamDuffy\CodingStandards\Rector\UseLaravelCarbonRector;
 use Rector\CodeQuality\Rector\Switch_\SingularSwitchToIfRector;
 use Rector\DeadCode\Rector\FunctionLike\RemoveDeadReturnRector;
 use Rector\Php73\Rector\ConstFetch\SensitiveConstantNameRector;
+use RectorLaravel\Rector\Class_\UnifyModelDatesWithCastsRector;
+use RectorLaravel\Rector\FuncCall\RemoveDumpDataDeadCodeRector;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfElseToTernaryRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfNotNullReturnRector;
@@ -76,19 +81,26 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\Php70\Rector\Break_\BreakNotInLoopOrSwitchToReturnRector;
 use Rector\Php70\Rector\FunctionLike\ExceptionHandlerTypehintRector;
 use Rector\Php74\Rector\StaticCall\ExportToReflectionFunctionRector;
+use RectorLaravel\Rector\FuncCall\FactoryFuncCallToStaticCallRector;
 use Rector\CodeQuality\Rector\Class_\CompleteDynamicPropertiesRector;
 use Rector\DeadCode\Rector\Node\RemoveNonExistingVarAnnotationRector;
 use Rector\EarlyReturn\Rector\If_\ChangeNestedIfsToEarlyReturnRector;
 use Rector\Php53\Rector\Variable\ReplaceHttpServerVarsByServerRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
+use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
 use Rector\CodeQuality\Rector\Catch_\ThrowWithPreviousExceptionRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\DeadCode\Rector\Switch_\RemoveDuplicatedCaseInSwitchRector;
 use Rector\Php71\Rector\BinaryOp\BinaryOpBetweenNumberAndStringRector;
+use RectorLaravel\Rector\Class_\ModelCastsPropertyToCastsMethodRector;
 use Rector\CodeQuality\Rector\For_\ForRepeatedCountToOwnVariableRector;
 use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
+use RectorLaravel\Rector\Class_\RemoveModelPropertyFromFactoriesRector;
 use Rector\DeadCode\Rector\Return_\RemoveDeadConditionAboveReturnRector;
 use Rector\Php53\Rector\FuncCall\DirNameFileConstantToDirConstantRector;
+use RectorLaravel\Rector\ClassMethod\MigrateToSimplifiedAttributeRector;
+use RectorLaravel\Rector\PropertyFetch\OptionalToNullsafeOperatorRector;
+use RectorLaravel\Rector\StaticCall\RequestStaticValidateToInjectRector;
 use Rector\CodeQuality\Rector\Foreach_\SimplifyForeachToCoalescingRector;
 use Rector\CodeQuality\Rector\FunctionLike\SimplifyUselessVariableRector;
 use Rector\CodeQuality\Rector\LogicalAnd\AndAssignsToSeparateLinesRector;
@@ -99,9 +111,12 @@ use Rector\CodeQuality\Rector\FuncCall\ChangeArrayPushToArrayAssignRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedConstructorParamRector;
 use Rector\DeadCode\Rector\StaticCall\RemoveParentCallWithoutParentRector;
+use RectorLaravel\Rector\MethodCall\EloquentOrderByToLatestOrOldestRector;
 use Rector\CodeQuality\Rector\Foreach_\UnusedForeachValueToArrayKeysRector;
 use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use Rector\Php70\Rector\MethodCall\ThisCallOnStaticMethodToStaticCallRector;
+use RectorLaravel\Rector\PropertyFetch\ReplaceFakerInstanceWithHelperRector;
+use RectorLaravel\Rector\StaticCall\EloquentMagicMethodToQueryBuilderRector;
 use Rector\CodeQuality\Rector\Include_\AbsolutizeRequireAndIncludePathRector;
 use Rector\DeadCode\Rector\ClassConst\RemoveUnusedPrivateClassConstantRector;
 use Rector\DeadCode\Rector\Ternary\TernaryToBooleanOrFalseToBooleanAndRector;
@@ -109,10 +124,14 @@ use Rector\EarlyReturn\Rector\If_\ChangeIfElseValueAssignToEarlyReturnRector;
 use Rector\Php70\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector;
 use Rector\CodeQuality\Rector\FuncCall\ArrayMergeOfNonArraysToSimpleArrayRector;
 use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
+use RectorLaravel\Rector\MethodCall\EloquentWhereTypeHintClosureParameterRector;
+use RectorLaravel\Rector\MethodCall\ValidationRuleArrayStringValueToArrayRector;
 use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
+use RectorLaravel\Rector\MethodCall\EloquentWhereRelationTypeHintingParameterRector;
 use Rector\CodeQuality\Rector\Ternary\ArrayKeyExistsTernaryThenValueToCoalescingRector;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
 use Rector\CodingStyle\Rector\ClassMethod\MakeInheritedMethodVisibilitySameAsParentRector;
+use RectorLaravel\Rector\Expr\SubStrToStartsWithOrEndsWithStaticMethodCallRector\SubStrToStartsWithOrEndsWithStaticMethodCallRector;
 
 return RectorConfig::configure()
 	->withPaths([
@@ -258,6 +277,30 @@ return RectorConfig::configure()
 		RestoreDefaultNullToNullableTypePropertyRector::class,
 		AddGenericReturnTypeToRelationsRector::class,
 	])
+
+	// Laravel
+	->withRules([
+		UseLaravelCarbonRector::class,
+		EloquentWhereRelationTypeHintingParameterRector::class,
+		EloquentOrderByToLatestOrOldestRector::class,
+		EloquentMagicMethodToQueryBuilderRector::class,
+		AssertStatusToAssertMethodRector::class,
+		EloquentWhereTypeHintClosureParameterRector::class,
+		FactoryDefinitionRector::class,
+		FactoryFuncCallToStaticCallRector::class,
+		MigrateToSimplifiedAttributeRector::class,
+		ModelCastsPropertyToCastsMethodRector::class,
+		OptionalToNullsafeOperatorRector::class,
+		RemoveDumpDataDeadCodeRector::class,
+		RemoveModelPropertyFromFactoriesRector::class,
+		ReplaceFakerInstanceWithHelperRector::class,
+		RequestStaticValidateToInjectRector::class,
+		RouteActionCallableRector::class,
+		SubStrToStartsWithOrEndsWithStaticMethodCallRector::class,
+		UnifyModelDatesWithCastsRector::class,
+		ValidationRuleArrayStringValueToArrayRector::class,
+	])
+
 	->withSets([
 		LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
 		LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,

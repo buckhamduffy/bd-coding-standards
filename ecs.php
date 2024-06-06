@@ -1,6 +1,5 @@
 <?php
 
-use PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer;
 use PhpCsFixer\Fixer\Basic\EncodingFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer;
@@ -11,6 +10,7 @@ use PhpCsFixer\Fixer\PhpTag\NoClosingTagFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoEmptyPhpdocFixer;
 use PhpCsFixer\Fixer\Alias\ModernizeStrposFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
+use PhpCsFixer\Fixer\Phpdoc\PhpdocLineSpanFixer;
 use PhpCsFixer\Fixer\PhpTag\FullOpeningTagFixer;
 use PhpCsFixer\Fixer\Comment\NoEmptyCommentFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
@@ -35,6 +35,7 @@ use PhpCsFixer\Fixer\Casing\MagicConstantCasingFixer;
 use PhpCsFixer\Fixer\CastNotation\LowercaseCastFixer;
 use PhpCsFixer\Fixer\Operator\OperatorLinebreakFixer;
 use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
+use PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer;
 use PhpCsFixer\Fixer\Basic\NonPrintableCharacterFixer;
 use PhpCsFixer\Fixer\ClassNotation\OrderedTraitsFixer;
 use PhpCsFixer\Fixer\FunctionNotation\VoidReturnFixer;
@@ -349,7 +350,14 @@ return ECSConfig::configure()
 		BlankLineBeforeStatementFixer::class,
 		BlankLineBetweenImportGroupsFixer::class,
 		IndentationTypeFixer::class,
-		StatementIndentationFixer::class
+		StatementIndentationFixer::class,
+		PhpdocIndentFixer::class,
+		PhpdocAlignFixer::class,
+	])
+	->withConfiguredRule(PhpdocLineSpanFixer::class, [
+		'const'    => 'single',
+		'property' => 'single',
+		'method'   => 'multi',
 	])
 	->withConfiguredRule(OrderedImportsFixer::class, [
 		'imports_order' => [
@@ -361,11 +369,11 @@ return ECSConfig::configure()
 	])
 	->withConfiguredRule(ClassAttributesSeparationFixer::class, [
 		'elements' => [
-			'const' => ClassAttributesSeparationFixer::SPACING_NONE,
-			'method' => ClassAttributesSeparationFixer::SPACING_ONE,
-			'property' => ClassAttributesSeparationFixer::SPACING_NONE,
+			'const'        => ClassAttributesSeparationFixer::SPACING_NONE,
+			'method'       => ClassAttributesSeparationFixer::SPACING_ONE,
+			'property'     => ClassAttributesSeparationFixer::SPACING_NONE,
 			'trait_import' => ClassAttributesSeparationFixer::SPACING_NONE,
-			'case' => ClassAttributesSeparationFixer::SPACING_NONE
+			'case'         => ClassAttributesSeparationFixer::SPACING_NONE
 		]
 	])
 	->withSpacing(Option::INDENTATION_TAB)

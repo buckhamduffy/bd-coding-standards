@@ -11,6 +11,11 @@
     "laravel/framework": "^11.10",
     "driftingly/rector-laravel": "1.2"
   },
+  "autoload": {
+    "psr-4": {
+        "BuckhamDuffy\\CodingStandards\\": "src/"
+    }
+  },
   "authors": [
     {
       "name": "Aaron Florey",
