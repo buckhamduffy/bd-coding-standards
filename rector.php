@@ -268,9 +268,6 @@ return RectorConfig::configure()
 		LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
 		LaravelSetList::LARAVEL_CODE_QUALITY,
 	])
-	->withSkip([
-
-	])
 	->withPhpSets(
 		php83: true,
 	);

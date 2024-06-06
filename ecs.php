@@ -1,7 +1,7 @@
 <?php
 
+use PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer;
 use PhpCsFixer\Fixer\Basic\EncodingFixer;
-use PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer;
 use PhpCsFixer\Fixer\Casing\ConstantCaseFixer;
@@ -86,6 +86,7 @@ use PhpCsFixer\Fixer\Operator\NoUselessNullsafeOperatorFixer;
 use PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer;
 use PhpCsFixer\Fixer\Whitespace\NoWhitespaceInBlankLineFixer;
 use PhpCsFixer\Fixer\ControlStructure\SimplifiedIfReturnFixer;
+use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\ControlStructure\NoAlternativeSyntaxFixer;
 use PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer;
 use PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer;
@@ -99,10 +100,13 @@ use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
 use PhpCsFixer\Fixer\ControlStructure\SwitchContinueToBreakFixer;
 use PhpCsFixer\Fixer\FunctionNotation\FunctionTypehintSpaceFixer;
 use PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer;
+use PhpCsFixer\Fixer\ClassNotation\ClassAttributesSeparationFixer;
 use PhpCsFixer\Fixer\ControlStructure\ControlStructureBracesFixer;
+use PhpCsFixer\Fixer\Whitespace\BlankLineBetweenImportGroupsFixer;
 use PhpCsFixer\Fixer\Operator\ObjectOperatorWithoutWhitespaceFixer;
 use PhpCsFixer\Fixer\ArrayNotation\WhitespaceAfterCommaInArrayFixer;
 use PhpCsFixer\Fixer\ConstantNotation\NativeConstantInvocationFixer;
+use PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer;
 use PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitDedicateAssertInternalTypeFixer;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
@@ -342,6 +346,11 @@ return ECSConfig::configure()
 		SingleQuoteFixer::class,
 		CommentedOutCodeSniff::class,
 		NoUnusedImportsFixer::class,
+		BlankLineBeforeStatementFixer::class,
+		BlankLineBetweenImportGroupsFixer::class,
+		ClassAttributesSeparationFixer::class,
+		IndentationTypeFixer::class,
+		StatementIndentationFixer::class
 	])
 	->withConfiguredRule(OrderedImportsFixer::class, [
 		'imports_order' => [
