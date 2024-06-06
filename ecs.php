@@ -1,6 +1,7 @@
 <?php
 
 use PhpCsFixer\Fixer\Basic\EncodingFixer;
+use PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer;
 use PhpCsFixer\Fixer\Casing\ConstantCaseFixer;
@@ -242,6 +243,7 @@ return ECSConfig::configure()
 		SingleLineCommentSpacingFixer::class,
 		SingleLineCommentStyleFixer::class,
 		NativeConstantInvocationFixer::class,
+		NativeFunctionInvocationFixer::class,
 		ControlStructureBracesFixer::class,
 		ControlStructureContinuationPositionFixer::class,
 		ElseifFixer::class,
