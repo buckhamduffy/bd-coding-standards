@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v5.0.0 - 2024-06-06
+#### Features
+- add new ecs rules to fix alignments - (548b227) - Aaron Florey
+
+- - -
+
 ## v4.1.0 - 2024-06-06
 #### Features
 - upgrade packages - (4f97862) - Aaron Florey
