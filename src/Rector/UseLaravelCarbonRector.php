@@ -4,20 +4,16 @@ declare(strict_types = 1);
 
 namespace BuckhamDuffy\CodingStandards\Rector;
 
-use Override;
 use PhpParser\Node;
 use PhpParser\Node\Name;
-use PhpParser\Comment\Doc;
+use PhpParser\NodeTraverser;
 use PhpParser\Node\Stmt\Use_;
-use PhpParser\Node\UnionType;
-use Illuminate\Support\Carbon;
 use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\UseUse;
-use PhpParser\Node\NullableType;
-use PhpParser\Node\Stmt\Property;
 use Rector\Rector\AbstractRector;
-use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Name\FullyQualified;
+use Rector\Naming\Naming\UseImportsResolver;
+use Rector\NodeTypeResolver\Node\AttributeKey;
+use Rector\Renaming\NodeManipulator\ClassRenamer;
 use Rector\PostRector\Collector\UseNodesToAddCollector;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -25,179 +21,115 @@ use Rector\StaticTypeMapper\ValueObject\Type\FullyQualifiedObjectType;
 
 final class UseLaravelCarbonRector extends AbstractRector
 {
-    public function __construct(private readonly UseNodesToAddCollector $addCollector)
-    {
-    }
-    
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition('// @todo fill the description', [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-// @todo fill code before
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-// @todo fill code after
-CODE_SAMPLE
-            ),
-        ]);
-    }
+	private string $oldCarbon = 'Carbon\\Carbon';
+	private string $newCarbon = 'Illuminate\\Support\\Carbon';
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
-    {
-        return [Class_::class, Use_::class];
-    }
+	public function __construct(
+		private readonly UseNodesToAddCollector $addCollector,
+		private readonly UseImportsResolver $importsResolver,
+		private readonly ClassRenamer $classRenamer
+	)
+	{
+	}
 
-    /**
-     * @param Class_ $node
-     */
-    public function refactor(Node $node): ?Node
-    {
-        if ($node instanceof Use_) {
-            return $this->refactorUseImport($node);
-        }
+	public function getRuleDefinition(): RuleDefinition
+	{
+		return new RuleDefinition('Replaces raw Carbon with Laravel Carbon', [
+			new CodeSample(
+				<<<'CODE_SAMPLE'
+					use Carbon\Carbon;
+					
+					function(\Carbon\Carbon $date): \Carbon\Carbon {
+						$date = \Carbon\Carbon::now();
+						return $date->addDays(1);
+					}
+				CODE_SAMPLE
+				,
+				<<<'CODE_SAMPLE'
+					use Illuminate\Support\Carbon;
+					
+					function(Carbon $date): Carbon {
+						$date = Carbon::now();
+						return $date->addDays(1);
+					}
+				CODE_SAMPLE
+			),
+		]);
+	}
 
-        return $this->refactorClass($node);
-    }
+	/**
+	 * @return array<class-string<Node>>
+	 */
+	public function getNodeTypes(): array
+	{
+		return [FullyQualified::class, Use_::class];
+	}
 
-    private function refactorUseImport(Use_ $use): ?Use_
-    {
-        $found = false;
-        $uses = [];
+	/**
+	 * @param Class_ $node
+	 */
+	public function refactor(Node $node): null|int|Node
+	{
+		if ($node instanceof Use_) {
+			return $this->refactorUseImport($node);
+		}
 
-        $alreadyHas = false;
+		if ($node instanceof FullyQualified) {
+			return $this->refactorFullyQualified($node);
+		}
 
-        foreach ($use->uses as $singleUse) {
-            if ($this->nodeNameResolver->isName($singleUse, Carbon::class)) {
-                $alreadyHas = true;
-            }
-        }
+		return null;
+	}
 
-        foreach ($use->uses as $singleUse) {
-            if ($this->nodeNameResolver->isName($singleUse, \Carbon\Carbon::class)) {
-                // Just in-case we already added the use
-                if ($alreadyHas) {
-                    continue;
-                }
+	/**
+	 * Finds instances of a use that includes Carbon\Carbon and replaces it with Illuminate\Support\Carbon
+	 */
+	private function refactorUseImport(Use_ $node): null|int|Node
+	{
+		foreach ($node->uses as $index => $use) {
+			if ($this->nodeNameResolver->isName($use, $this->oldCarbon)) {
+				// Just in-case we already added the use
+				foreach ($this->importsResolver->resolve() as $useGroup) {
+					foreach ($useGroup->uses as $item) {
+						if ($this->isName($item, $this->newCarbon)) {
+							unset($node->uses[$index]);
 
-                $found = true;
+							continue 3;
+						}
+					}
+				}
 
-                $singleUse = new UseUse(
-                    new Name(explode('\\', Carbon::class)),
-                    $singleUse->alias,
-                    $singleUse->type,
-                    $singleUse->getAttributes(),
-                );
-            }
+				$use->name = new Name($this->newCarbon, $use->name->getAttributes());
+			}
+		}
 
-            $uses[] = $singleUse;
-        }
+		if (!\count($node->uses)) {
+			return NodeTraverser::REMOVE_NODE;
+		}
 
-        $use->uses = $uses;
+		$node->uses = array_values($node->uses);
 
-        return $found ? $use : null;
-    }
+		return null;
+	}
 
-    private function refactorClass(Class_ $node): ?Class_
-    {
-        $found = false;
+	/**
+	 * Renames any instance of Carbon\Carbon with Illuminate\Support\Carbon
+	 */
+	private function refactorFullyQualified(FullyQualified $node): ?Node
+	{
+		$scope = $node->getAttribute(AttributeKey::SCOPE);
+		$result = $this->classRenamer->renameNode($node, [$this->oldCarbon => $this->newCarbon], $scope);
 
-        foreach ($node->stmts as $stmtIndex => $stmt) {
-            if ($stmt instanceof Property) {
-                if ($stmt->type && ($type = $this->refactorPropertyType($stmt->type))) {
-                    $stmt->type = $type;
-                    $node->stmts[$stmtIndex] = $stmt;
-                    $found = true;
-                }
+		if (!$result) {
+			return null;
+		}
 
-                continue;
-            }
+		$this->addCollector->addUseImport(new FullyQualifiedObjectType($this->newCarbon));
 
-            if ($stmt instanceof ClassMethod) {
-                if ($stmt->returnType && ($type = $this->refactorPropertyType($stmt->returnType))) {
-                    $stmt->returnType = $type;
-                    $node->stmts[$stmtIndex] = $stmt;
-                    $found = true;
-                }
+		if ($result instanceof FullyQualified) {
+			return new Name('Carbon', $result->getAttributes());
+		}
 
-                foreach ($stmt->getParams() as $paramIndex => $param) {
-                    if (!$param->type) {
-                        continue;
-                    }
-
-                    if (($type = $this->refactorPropertyType($param->type)) === null) {
-                        continue;
-                    }
-
-                    $param->type = $type;
-                    $stmt->params[$paramIndex] = $param;
-                    $node->stmts[$stmtIndex] = $stmt;
-                    $found = true;
-                }
-
-                if (($doc = $stmt->getDocComment()) && str_contains($doc->getText(), \Carbon\Carbon::class)) {
-                    $found = true;
-                    $stmt->setDocComment(new Doc(
-                        str_replace(\Carbon\Carbon::class, 'Carbon', $doc->getText()),
-                        $doc->getStartLine(),
-                        $doc->getStartFilePos(),
-                        $doc->getStartTokenPos(),
-                        $doc->getEndLine(),
-                        $doc->getEndFilePos(),
-                        $doc->getEndTokenPos(),
-                    ));
-                    $node->stmts[$stmtIndex] = $stmt;
-                }
-            }
-        }
-
-        if ($found) {
-            $this->addCollector->addUseImport(new FullyQualifiedObjectType(Carbon::class));
-        }
-
-        return $found ? $node : null;
-    }
-
-    public function refactorPropertyType(Node $type): ?Node
-    {
-        if ($type instanceof NullableType) {
-            if ($type->type->toString() === \Carbon\Carbon::class) {
-                return new NullableType(
-                    new Name(['Carbon']),
-                    $type->getAttributes()
-                );
-            }
-
-            return null;
-        }
-
-        if ($type instanceof FullyQualified) {
-            if ($type->toString() === \Carbon\Carbon::class) {
-                return new FullyQualified(
-                    new Name(['Carbon']),
-                    $type->getAttributes()
-                );
-            }
-
-            return null;
-        }
-
-        if ($type instanceof UnionType) {
-            foreach ($type->types as $index => $_type) {
-                if (($_type = $this->refactorPropertyType($_type)) !== null) {
-                    $type->types[$index] = $_type;
-
-                    return $type;
-                }
-            }
-
-            return null;
-        }
-
-        return null;
-    }
+		return $node;
+	}
 }
