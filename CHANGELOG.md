@@ -5,6 +5,14 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.0.0 - 2024-06-21
+#### Bug Fixes
+- improve carbon rector - (39bdc48) - Aaron Florey
+#### Features
+- add new custom rector rules - (8f819f5) - Aaron Florey
+
+- - -
+
 ## v5.2.0 - 2024-06-06
 #### Features
 - ecs withRules overwrites the previous, so not all rules were included - (47385b3) - Aaron Florey
