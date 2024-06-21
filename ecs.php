@@ -144,6 +144,7 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ScopeKeywordSpacingSniff;
 use PhpCsFixer\Fixer\ArrayNotation\NoMultilineWhitespaceAroundDoubleArrowFixer;
 use PHP_CodeSniffer\Standards\PEAR\Sniffs\NamingConventions\ValidClassNameSniff;
+use PHP_CodeSniffer\Standards\Squiz\Sniffs\Operators\ValidLogicalOperatorsSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\PropertyLabelSpacingSniff;
 use PhpCsFixer\Fixer\ControlStructure\ControlStructureContinuationPositionFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\WhiteSpace\DisallowSpaceIndentSniff;
@@ -164,9 +165,16 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAl
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff;
 
 return ECSConfig::configure()
-	->withPaths([
-		getcwd() . '/app',
-	])
+	->withPaths(
+		array_filter(
+			[
+				getcwd() . '/src',
+				getcwd() . '/app',
+				getcwd() . '/config',
+			],
+			fn (string $path) => file_exists($path) || is_dir($path)
+		)
+	)
 	->withConfiguredRule(ArraySyntaxFixer::class, [
 		'syntax' => 'short',
 	])
@@ -322,6 +330,7 @@ return ECSConfig::configure()
 		NoUnusedImportsFixer::class,
 		PhpdocAlignFixer::class,
 		StatementIndentationFixer::class,
+		ValidLogicalOperatorsSniff::class,
 	])
 	->withConfiguredRule(BinaryOperatorSpacesFixer::class, [
 		'operators' => [

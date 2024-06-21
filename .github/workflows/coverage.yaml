@@ -1,0 +1,48 @@
+name: Coverage
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+      - staging
+
+concurrency:
+  group: coverage-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - uses: ramsey/composer-install@v3
+
+      - name: Execute tests via PHPUnit
+        run: php -d memory_limit=-1 vendor/bin/phpunit
+
+  rector:
+    name: Run Rector
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - uses: ramsey/composer-install@v3
+
+      - name: Execute rector
+        run: ./vendor/bin/rector process ./src
+        
+        
