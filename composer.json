@@ -1,46 +1,46 @@
 {
-  "name": "buckhamduffy/coding-standards",
-  "description": "",
-  "type": "library",
-  "require": {
-    "php": ">=8.2.1",
-    "symplify/easy-coding-standard": "12.3.0",
-    "rector/rector": "1.1.0",
-    "phpstan/phpstan": "^1.10.62",
-    "larastan/larastan": "2.9.7",
-    "laravel/framework": "^11.11",
-    "driftingly/rector-laravel": "1.2"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^11.2",
-    "spatie/laravel-data": "^4.6"
-  },
-  "autoload": {
-    "psr-4": {
-      "BuckhamDuffy\\CodingStandards\\": "src/"
-    }
-  },
-  "authors": [
-    {
-      "name": "Aaron Florey",
-      "email": "aaron@buckhamduffy.com"
+    "name": "buckhamduffy/coding-standards",
+    "description": "",
+    "type": "library",
+    "require": {
+        "php": ">=8.2.1",
+        "driftingly/rector-laravel": "1.2",
+        "larastan/larastan": "2.9.7",
+        "laravel/framework": "^11.11.1",
+        "phpstan/phpstan": "^1.10.62",
+        "rector/rector": "^1.1.1",
+        "symplify/easy-coding-standard": "12.3.0"
     },
-    {
-      "name": "Alex Buckham",
-      "email": "alex@buckhamduffy.com"
+    "require-dev": {
+        "phpunit/phpunit": "^11.2.5",
+        "spatie/laravel-data": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "BuckhamDuffy\\CodingStandards\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aaron Florey",
+            "email": "aaron@buckhamduffy.com"
+        },
+        {
+            "name": "Alex Buckham",
+            "email": "alex@buckhamduffy.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "platform": {
+            "php": "8.2.1"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Tests\\Unit\\": "tests/Unit/",
+            "Tests\\Unit\\Rector\\": "tests/Unit/Rector/"
+        }
     }
-  ],
-  "minimum-stability": "stable",
-  "config": {
-    "platform": {
-      "php": "8.2.1"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/",
-      "Tests\\Unit\\": "tests/Unit/",
-      "Tests\\Unit\\Rector\\": "tests/Unit/Rector/"
-    }
-  }
 }

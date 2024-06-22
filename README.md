@@ -3,27 +3,47 @@
 #### Usage
 Run `composer require --dev buckhamduffy/coding-standards`
 
-###### ECS
+###### ECS Example
 ecs.php
 ```php
 <?php
 
-use Symplify\EasyCodingStandard\Config\ECSConfig;
+declare(strict_types=1);
 
-return static function (ECSConfig $config): void {
-	$config->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php');
-};
+use Symplify\EasyCodingStandard\Configuration\ECSConfigBuilder;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff;
+
+/** @var ECSConfigBuilder $config */
+$config = require __DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php';
+
+$config
+    ->withParallel()
+    ->withSpacing(indentation: Option::INDENTATION_SPACES, lineEnding: "\n")
+    ->withSkip([EmptyStatementSniff::class]);
+
+return $config;
+
 ```
 
 
-###### Rector
+###### Rector Example
 rector.php
 ```php
 <?php
 
-return static function (\Rector\Config\RectorConfig $config): void {
-	$config->import(__DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php');
-};
+use Rector\ValueObject\PhpVersion;
+use RectorLaravel\Set\LaravelLevelSetList;
+use Rector\Configuration\RectorConfigBuilder;
+
+/** @var RectorConfigBuilder $config */
+$config = require __DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php';
+
+$config
+    ->withSets([LaravelLevelSetList::UP_TO_LARAVEL_110])
+    ->withPhpVersion(PhpVersion::PHP_83)
+    ->withPhpSets(php83: true);
+
+return $config;
 ```
 
 ###### PHPStan
