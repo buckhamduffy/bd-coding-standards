@@ -5,6 +5,14 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.0.1 - 2024-06-29
+#### Bug Fixes
+- remove boolean rector rule, minor cleanup in custom rules - (d63d7fe) - Aaron Florey
+#### Miscellaneous Chores
+- update readme - (2e9fb6a) - Aaron Florey
+
+- - -
+
 ## v6.0.0 - 2024-06-21
 #### Bug Fixes
 - improve carbon rector - (39bdc48) - Aaron Florey
