@@ -13,7 +13,6 @@ use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\NodeTypeResolver;
 use Rector\StaticTypeMapper\StaticTypeMapper;
 use Rector\PHPStanStaticTypeMapper\Enum\TypeKind;
-use Rector\Php80\NodeAnalyzer\PhpAttributeAnalyzer;
 use Rector\StaticTypeMapper\ValueObject\Type\NonExistingObjectType;
 
 class PropertyHelper
@@ -22,7 +21,6 @@ class PropertyHelper
 		private StaticTypeMapper $staticTypeMapper,
 		private NodeTypeResolver $nodeTypeResolver,
 		private NodeNameResolver $nodeNameResolver,
-		private PhpAttributeAnalyzer $phpAttributeAnalyzer,
 	)
 	{
 	}

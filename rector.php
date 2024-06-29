@@ -107,7 +107,6 @@ use Rector\DeadCode\Rector\Stmt\RemoveUnreachableStatementRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\Php55\Rector\FuncCall\GetCalledClassToSelfClassRector;
 use Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector;
-use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyRegexPatternRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyArraySearchRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
@@ -476,7 +475,6 @@ return RectorConfig::configure()
 		AddOverrideAttributeToOverriddenMethodsRector::class,
 		AddTypeToConstRector::class,
 		FinalizeTestCaseClassRector::class,
-		BooleanInIfConditionRuleFixerRector::class,
 		DisallowedEmptyRuleFixerRector::class,
 		AddClosureVoidReturnTypeWhereNoReturnRector::class,
 		AddFunctionVoidReturnTypeWhereNoReturnRector::class,

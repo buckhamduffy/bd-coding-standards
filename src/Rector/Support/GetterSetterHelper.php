@@ -37,9 +37,6 @@ class GetterSetterHelper
 {
 	public function __construct(
 		private NodeNameResolver $nodeNameResolver,
-		private StaticTypeMapper $staticTypeMapper,
-		private NodeTypeResolver $nodeTypeResolver,
-		private RectorHelper $rectorHelper,
 		private PropertyHelper $propertyHelper,
 		private PhpDocInfoFactory $phpDocInfoFactory,
 		private DocBlockUpdater $docBlockUpdater,

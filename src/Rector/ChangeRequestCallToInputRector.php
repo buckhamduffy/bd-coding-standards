@@ -4,7 +4,6 @@ namespace BuckhamDuffy\CodingStandards\Rector;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr;
-use PhpParser\NodeTraverser;
 use PHPStan\Type\ObjectType;
 use PhpParser\Node\Expr\Cast;
 use PhpParser\Node\Expr\FuncCall;
@@ -72,9 +71,6 @@ final class ChangeRequestCallToInputRector extends AbstractRector
 		]);
 	}
 
-	/**
-	 * @param PropertyFetch $node
-	 */
 	public function refactor(Node $node): Node|int|null
 	{
 		if ($node instanceof ArrayDimFetch) {
@@ -230,10 +226,10 @@ final class ChangeRequestCallToInputRector extends AbstractRector
 		return null;
 	}
 
-	private function refactorCarbonRequests(StaticCall $node): Node|int|null
+	private function refactorCarbonRequests(StaticCall $node): Node|null
 	{
 		if (!$this->helper->isClassName($node, ['Carbon\Carbon', 'Illuminate\Support\Carbon'])) {
-			return NodeTraverser::DONT_TRAVERSE_CHILDREN;
+			return null;
 		}
 
 		if ($this->isNames($node->name, ['parse', 'createFromFormat'])) {
@@ -247,7 +243,7 @@ final class ChangeRequestCallToInputRector extends AbstractRector
 
 			// First arg isn't a request variable
 			if (!$this->isRequest($request)) {
-				return $node;
+				return null;
 			}
 
 			$request = $this->refactorRequestVariable($request);
@@ -295,7 +291,7 @@ final class ChangeRequestCallToInputRector extends AbstractRector
 			);
 		}
 
-		return NodeTraverser::DONT_TRAVERSE_CHILDREN;
+		return null;
 	}
 
 	public function convertCarbonToRequest(Node $node, Node $request): Node|Expr|null
@@ -327,17 +323,17 @@ final class ChangeRequestCallToInputRector extends AbstractRector
 		return null;
 	}
 
-	private function refactorCast(Cast $node): Node|int
+	private function refactorCast(Cast $node): Node|null
 	{
 		if (!$this->isRequest($node->expr)) {
-			return NodeTraverser::DONT_TRAVERSE_CHILDREN;
+			return null;
 		}
 
 		return match ($this->helper->getCastType($node)) {
 			'int'   => $this->convertRequestToMethod($node->expr, 'integer'),
 			'float' => $this->convertRequestToMethod($node->expr, 'float'),
 			'bool'  => $this->convertRequestToMethod($node->expr, 'boolean'),
-			default => NodeTraverser::DONT_TRAVERSE_CHILDREN,
+			default => null,
 		};
 	}
 }

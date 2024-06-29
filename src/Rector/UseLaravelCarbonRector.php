@@ -6,7 +6,7 @@ namespace BuckhamDuffy\CodingStandards\Rector;
 
 use PhpParser\Node;
 use PhpParser\Node\Name;
-use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitor;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\Class_;
 use Rector\Rector\AbstractRector;
@@ -104,7 +104,7 @@ final class UseLaravelCarbonRector extends AbstractRector
 		}
 
 		if (!\count($node->uses)) {
-			return NodeTraverser::REMOVE_NODE;
+			return NodeVisitor::REMOVE_NODE;
 		}
 
 		$node->uses = array_values($node->uses);

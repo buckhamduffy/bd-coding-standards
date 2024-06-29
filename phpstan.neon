@@ -1,5 +1,5 @@
 includes:
-    - ../../nunomaduro/larastan/extension.neon
+    - ../../larastan/larastan/extension.neon
 
 parameters:
 	paths:
@@ -12,11 +12,9 @@ parameters:
 		- '#Unsafe usage of new static#'
 		- '#Call to an undefined method App\\Providers\\DuskServiceProvider#'
 		- '#Call to an undefined static method Maatwebsite\\Excel\\Facades\\Excel::create#'
-		- '#Class App\\.+ implements unknown interface#'
 		- '#Call to an undefined static method Cartalyst\\Stripe\\Laravel\\Facades\\Stripe#'
 
 	excludePaths:
-		-  *.stub
 		- ecs.php
 
 	checkMissingIterableValueType: false
