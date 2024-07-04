@@ -45,6 +45,7 @@ use Rector\DeadCode\Rector\If_\RemoveDeadInstanceOfRector;
 use Rector\Php70\Rector\ClassMethod\Php4ConstructorRector;
 use Rector\Php72\Rector\FuncCall\StringsAssertNakedRector;
 use Rector\Php80\Rector\Switch_\ChangeSwitchToMatchRector;
+use RectorLaravel\Rector\Class_\AnonymousMigrationsRector;
 use Rector\CodeQuality\Rector\FuncCall\SetTypeToCastRector;
 use Rector\CodeQuality\Rector\Switch_\SwitchTrueToIfRector;
 use Rector\DeadCode\Rector\Assign\RemoveDoubleAssignRector;
@@ -77,7 +78,6 @@ use Rector\Php52\Rector\Switch_\ContinueToBreakInSwitchRector;
 use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
 use Rector\Php70\Rector\Ternary\TernaryToNullCoalescingRector;
 use RectorLaravel\Rector\StaticCall\RouteActionCallableRector;
-use BuckhamDuffy\CodingStandards\Rector\UseLaravelCarbonRector;
 use Rector\CodeQuality\Rector\FuncCall\BoolvalToTypeCastRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentImplodeRector;
 use Rector\DeadCode\Rector\FunctionLike\RemoveDeadReturnRector;
@@ -107,6 +107,7 @@ use Rector\DeadCode\Rector\Stmt\RemoveUnreachableStatementRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\Php55\Rector\FuncCall\GetCalledClassToSelfClassRector;
 use Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector;
+use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyRegexPatternRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyArraySearchRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
@@ -143,6 +144,7 @@ use Rector\EarlyReturn\Rector\If_\ChangeNestedIfsToEarlyReturnRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php70\Rector\FuncCall\RenameMktimeWithoutArgsToTimeRector;
 use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
+use RectorLaravel\Rector\MethodCall\JsonCallToExplicitJsonCallRector;
 use Rector\CodeQuality\Rector\BooleanNot\SimplifyDeMorganBinaryRector;
 use Rector\CodeQuality\Rector\Catch_\ThrowWithPreviousExceptionRector;
 use Rector\CodeQuality\Rector\FuncCall\SimplifyFuncGetArgsCountRector;
@@ -152,7 +154,6 @@ use Rector\DeadCode\Rector\Property\RemoveUnusedPrivatePropertyRector;
 use Rector\DeadCode\Rector\Switch_\RemoveDuplicatedCaseInSwitchRector;
 use Rector\Php70\Rector\StmtsAwareInterface\IfIssetToCoalescingRector;
 use RectorLaravel\Rector\Class_\ModelCastsPropertyToCastsMethodRector;
-use BuckhamDuffy\CodingStandards\Rector\ChangeRequestCallToInputRector;
 use Rector\CodeQuality\Rector\BooleanAnd\SimplifyEmptyArrayCheckRector;
 use Rector\CodeQuality\Rector\For_\ForRepeatedCountToOwnVariableRector;
 use Rector\CodeQuality\Rector\Ternary\NumberCompareToMaxFuncCallRector;
@@ -168,6 +169,7 @@ use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Php53\Rector\FuncCall\DirNameFileConstantToDirConstantRector;
 use Rector\Php80\Rector\ClassConstFetch\ClassOnThisVariableObjectRector;
 use RectorLaravel\Rector\ClassMethod\MigrateToSimplifiedAttributeRector;
+use RectorLaravel\Rector\Expr\AppEnvironmentComparisonToParameterRector;
 use RectorLaravel\Rector\PropertyFetch\OptionalToNullsafeOperatorRector;
 use RectorLaravel\Rector\StaticCall\RequestStaticValidateToInjectRector;
 use Rector\CodeQuality\Rector\BooleanNot\ReplaceMultipleBooleanNotRector;
@@ -195,6 +197,9 @@ use Rector\CodeQuality\Rector\Foreach_\UnusedForeachValueToArrayKeysRector;
 use Rector\CodingStyle\Rector\ClassMethod\FuncGetArgsToVariadicParamRector;
 use Rector\Php80\Rector\ClassMethod\AddParamBasedOnParentClassMethodRector;
 use Rector\TypeDeclaration\Rector\Class_\ReturnTypeFromStrictTernaryRector;
+use RectorLaravel\Rector\Class_\AddExtendsAnnotationToModelFactoriesRector;
+use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
+use RectorLaravel\Rector\ClassMethod\AddParentBootToModelClassMethodRector;
 use Rector\DeadCode\Rector\If_\RemoveUnusedNonEmptyArrayBeforeForeachRector;
 use Rector\Php70\Rector\MethodCall\ThisCallOnStaticMethodToStaticCallRector;
 use Rector\Php74\Rector\ArrayDimFetch\CurlyToSquareBracketArrayStringRector;
@@ -208,6 +213,7 @@ use Rector\DeadCode\Rector\Ternary\TernaryToBooleanOrFalseToBooleanAndRector;
 use Rector\EarlyReturn\Rector\If_\ChangeIfElseValueAssignToEarlyReturnRector;
 use Rector\Php70\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\StrictArrayParamDimFetchRector;
+use RectorLaravel\Rector\MethodCall\UseComponentPropertyWithinCommandsRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\EarlyReturn\Rector\StmtsAwareInterface\ReturnEarlyIfVariableRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\ParamTypeByMethodCallTypeRector;
@@ -234,6 +240,7 @@ use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRect
 use Rector\TypeDeclaration\Rector\Class_\AddTestsVoidReturnTypeWhereNoReturnRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictNativeCallRector;
+use RectorLaravel\Rector\ClassMethod\AddParentRegisterToEventServiceProviderRector;
 use Rector\CodeQuality\Rector\Class_\StaticToSelfStaticMethodCallOnFinalClassRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnDirectArrayRector;
 use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRector;
@@ -265,7 +272,6 @@ return RectorConfig::configure()
 			[
 				getcwd() . '/src',
 				getcwd() . '/app',
-				getcwd() . '/config',
 			],
 			fn (string $path) => file_exists($path) || is_dir($path)
 		)
@@ -515,13 +521,10 @@ return RectorConfig::configure()
 	->withRules([
 		EloquentWhereRelationTypeHintingParameterRector::class,
 		EloquentOrderByToLatestOrOldestRector::class,
-		EloquentMagicMethodToQueryBuilderRector::class,
 		AssertStatusToAssertMethodRector::class,
 		EloquentWhereTypeHintClosureParameterRector::class,
 		FactoryDefinitionRector::class,
 		FactoryFuncCallToStaticCallRector::class,
-		MigrateToSimplifiedAttributeRector::class,
-		ModelCastsPropertyToCastsMethodRector::class,
 		OptionalToNullsafeOperatorRector::class,
 		RemoveDumpDataDeadCodeRector::class,
 		RemoveModelPropertyFromFactoriesRector::class,
@@ -531,12 +534,33 @@ return RectorConfig::configure()
 		SubStrToStartsWithOrEndsWithStaticMethodCallRector::class,
 		UnifyModelDatesWithCastsRector::class,
 		ValidationRuleArrayStringValueToArrayRector::class,
+		AddExtendsAnnotationToModelFactoriesRector::class,
+		AddGenericReturnTypeToRelationsRector::class,
+		AddParentBootToModelClassMethodRector::class,
+		AddParentRegisterToEventServiceProviderRector::class,
+		AnonymousMigrationsRector::class,
+		AppEnvironmentComparisonToParameterRector::class,
+		JsonCallToExplicitJsonCallRector::class,
+		UseComponentPropertyWithinCommandsRector::class,
+	])
+	->withConfiguredRule(EloquentMagicMethodToQueryBuilderRector::class, [
+		EloquentMagicMethodToQueryBuilderRector::EXCLUDE_METHODS => [
+			'find',
+			'findOrFail',
+			'findMany',
+			'findOrNew',
+			'firstOrNew',
+			'firstOrCreate',
+			'createOrFirst',
+			'updateOrCreate',
+			'firstOrFail',
+		]
 	])
 
 	// Custom Rules
 	->withRules([
-		UseLaravelCarbonRector::class,
-		ChangeRequestCallToInputRector::class,
+		//		UseLaravelCarbonRector::class,
+		//		ChangeRequestCallToInputRector::class,
 	])
 
 	// Laravel Sets
@@ -549,4 +573,9 @@ return RectorConfig::configure()
 		LaravelSetList::LARAVEL_110,
 		LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
 		LaravelSetList::LARAVEL_CODE_QUALITY,
+	])
+	->withSkip([
+		MigrateToSimplifiedAttributeRector::class,
+		ModelCastsPropertyToCastsMethodRector::class,
+		BooleanInIfConditionRuleFixerRector::class,
 	]);
