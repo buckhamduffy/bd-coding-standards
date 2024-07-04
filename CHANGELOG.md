@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.0.2 - 2024-07-04
+#### Bug Fixes
+- change laravel rector rules - (9342654) - Aaron Florey
+
+- - -
+
 ## v6.0.1 - 2024-06-29
 #### Bug Fixes
 - remove boolean rector rule, minor cleanup in custom rules - (d63d7fe) - Aaron Florey
