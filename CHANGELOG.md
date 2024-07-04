@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.0.4 - 2024-07-04
+#### Bug Fixes
+- remove deprecated rector rules - (5797eda) - Aaron Florey
+
+- - -
+
 ## v6.0.3 - 2024-07-04
 #### Bug Fixes
 - upgrade underlying packages - (b66a0ad) - Aaron Florey
