@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.1.0 - 2024-07-07
+#### Features
+- add captainhook for use in other projects - (ac2060e) - Aaron Florey
+
+- - -
+
 ## v6.0.4 - 2024-07-04
 #### Bug Fixes
 - remove deprecated rector rules - (5797eda) - Aaron Florey
