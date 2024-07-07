@@ -18,13 +18,10 @@ $config = require __DIR__ . '/vendor/buckhamduffy/coding-standards/ecs.php';
 
 $config
     ->withParallel()
-    ->withSpacing(indentation: Option::INDENTATION_SPACES, lineEnding: "\n")
-    ->withSkip([EmptyStatementSniff::class]);
+    ->withSpacing(indentation: Option::INDENTATION_SPACES, lineEnding: "\n");
 
 return $config;
-
 ```
-
 
 ###### Rector Example
 rector.php
@@ -50,5 +47,14 @@ return $config;
 phpstan.neon
 ```neon
 includes:
-    - ./vendor/buckhamduffy/coding-standards/phpstan.neon
+    - ./vendor/buckhamduffy/coding-standards/extension.neon
+```
+
+###### CaptainHook
+CaptainHook can be used to install custom made commit hooks
+```bash
+composer require --dev captainhook/hook-installer
+```
+```bash
+cp vendor/buckhamduffy/coding-standards/captainhook.json captainhook.json
 ```

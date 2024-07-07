@@ -1,0 +1,111 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\:\\:\\$args\\.$#"
+			count: 1
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\:\\:\\$name\\.$#"
+			count: 2
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\:\\:\\$var\\.$#"
+			count: 3
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\\\Expr\\:\\:\\$value\\.$#"
+			count: 1
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Cannot access property \\$args on int\\|PhpParser\\\\Node\\.$#"
+			count: 2
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Parameter \\#1 \\$cond of class PhpParser\\\\Node\\\\Expr\\\\Ternary constructor expects PhpParser\\\\Node\\\\Expr, PhpParser\\\\Node given\\.$#"
+			count: 1
+			path: src/Rector/ChangeRequestCallToInputRector.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\:\\:\\$args\\.$#"
+			count: 1
+			path: src/Rector/Support/ArgHelper.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\\\Expr\\:\\:\\$value\\.$#"
+			count: 2
+			path: src/Rector/Support/ArrayHelper.php
+
+		-
+			message: "#^Method BuckhamDuffy\\\\CodingStandards\\\\Rector\\\\Support\\\\PropertyHelper\\:\\:removeTypesFromUnion\\(\\) invoked with 3 parameters, 2 required\\.$#"
+			count: 1
+			path: src/Rector/Support/GetterSetterHelper.php
+
+		-
+			message: "#^Parameter \\#2 \\$subNodes of class PhpParser\\\\Node\\\\Stmt\\\\ClassMethod constructor expects array\\{flags\\?\\: int, byRef\\?\\: bool, params\\?\\: array\\<PhpParser\\\\Node\\\\Param\\>, returnType\\?\\: PhpParser\\\\Node\\\\ComplexType\\|PhpParser\\\\Node\\\\Identifier\\|PhpParser\\\\Node\\\\Name\\|null, stmts\\?\\: array\\<PhpParser\\\\Node\\\\Stmt\\>\\|null, attrGroups\\?\\: array\\<PhpParser\\\\Node\\\\AttributeGroup\\>\\}, array\\{stmts\\: array\\{mixed\\}, returnType\\: PhpParser\\\\Node, flags\\: 1\\} given\\.$#"
+			count: 1
+			path: src/Rector/Support/GetterSetterHelper.php
+
+		-
+			message: "#^Parameter \\#3 \\$type of class PhpParser\\\\Node\\\\Param constructor expects PhpParser\\\\Node\\\\ComplexType\\|PhpParser\\\\Node\\\\Identifier\\|PhpParser\\\\Node\\\\Name\\|null, PhpParser\\\\Node given\\.$#"
+			count: 1
+			path: src/Rector/Support/GetterSetterHelper.php
+
+		-
+			message: "#^Property PhpParser\\\\Node\\\\Stmt\\\\ClassMethod\\:\\:\\$returnType \\(PhpParser\\\\Node\\\\ComplexType\\|PhpParser\\\\Node\\\\Identifier\\|PhpParser\\\\Node\\\\Name\\|null\\) does not accept PhpParser\\\\Node\\.$#"
+			count: 1
+			path: src/Rector/Support/GetterSetterHelper.php
+
+		-
+			message: "#^Argument of an invalid type PhpParser\\\\Node\\\\AttributeGroup supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Rector/Support/PropertyHelper.php
+
+		-
+			message: "#^Call to function is_null\\(\\) with PHPStan\\\\Type\\\\Type will always evaluate to false\\.$#"
+			count: 1
+			path: src/Rector/Support/PropertyHelper.php
+
+		-
+			message: "#^Call to function is_null\\(\\) with int\\<min, \\-1\\>\\|int\\<1, max\\> will always evaluate to false\\.$#"
+			count: 1
+			path: src/Rector/Support/PropertyHelper.php
+
+		-
+			message: "#^Instanceof between PhpParser\\\\Node\\\\ComplexType\\|PhpParser\\\\Node\\\\Identifier\\|PhpParser\\\\Node\\\\Name and Rector\\\\StaticTypeMapper\\\\ValueObject\\\\Type\\\\NonExistingObjectType will always evaluate to false\\.$#"
+			count: 1
+			path: src/Rector/Support/PropertyHelper.php
+
+		-
+			message: "#^Access to an undefined property PhpParser\\\\Node\\:\\:\\$name\\.$#"
+			count: 1
+			path: src/Rector/Support/RectorHelper.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$callable with type mixed is not subtype of native type callable\\.$#"
+			count: 1
+			path: src/Rector/Support/RectorHelper.php
+
+		-
+			message: "#^Instanceof between PhpParser\\\\Node\\\\Stmt\\\\Class_ and PhpParser\\\\Node\\\\Name\\\\FullyQualified will always evaluate to false\\.$#"
+			count: 1
+			path: src/Rector/UseLaravelCarbonRector.php
+
+		-
+			message: "#^Instanceof between PhpParser\\\\Node\\\\Stmt\\\\Class_ and PhpParser\\\\Node\\\\Stmt\\\\Use_ will always evaluate to false\\.$#"
+			count: 1
+			path: src/Rector/UseLaravelCarbonRector.php
+
+		-
+			message: "#^Method BuckhamDuffy\\\\CodingStandards\\\\Rector\\\\UseLaravelCarbonRector\\:\\:refactorUseImport\\(\\) never returns PhpParser\\\\Node so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/Rector/UseLaravelCarbonRector.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: src/Rector/UseLaravelCarbonRector.php

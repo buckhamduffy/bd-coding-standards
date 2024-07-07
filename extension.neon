@@ -1,0 +1,22 @@
+includes:
+    - ../../larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+
+    reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        - message: '#Access to an undefined property Illuminate\\Contracts\\Auth\\Authenticatable::\$id#'
+        - message: '#Access to an undefined property App\\Models\\\w+::\$pivot#'
+        - message: '#mixin contains unknown class App\\Models\\IdeHelper\w+#'
+
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    editorUrlTitle: '%%file%%:%%line%%'
+
+    # LaraStan settings
+    noModelMake: true
+    noUnnecessaryCollectionCall: true
+    checkUnusedViews: true
+    checkModelProperties: true

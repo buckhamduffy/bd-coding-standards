@@ -53,6 +53,12 @@ class TestController
 		echo Carbon::createFromFormat('Y-m-d', $request->input('foo'));
 		echo Carbon::createFromFormat('Y-m-d', $request->input('bar'), 'Australia/Brisbane');
 	}
+
+	public function test()
+	{
+		echo request()->get('foo');
+		echo Carbon::parse(request()->get('foo'), timezone: 'Australia/Brisbane');
+	}
 }
 
 ?>
@@ -112,6 +118,12 @@ class TestController
 		echo ($request->date('foo', 'Y-m-d', 'Australia/Brisbane') ?: Carbon::now('Australia/Brisbane'));
 		echo $request->date('foo', 'Y-m-d');
 		echo $request->date('bar', 'Y-m-d', 'Australia/Brisbane');
+	}
+
+	public function test()
+	{
+		echo request()->input('foo');
+		echo request()->date('foo', null, 'Australia/Brisbane');
 	}
 }
 

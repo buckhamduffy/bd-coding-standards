@@ -111,6 +111,8 @@ class PropertyHelper
 					return true;
 				}
 			}
+
+			return false;
 		}
 
 		foreach ($node->types as $unionType) {

@@ -22,8 +22,6 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\ClassConstFetch;
 use Rector\NodeNameResolver\NodeNameResolver;
-use Rector\NodeTypeResolver\NodeTypeResolver;
-use Rector\StaticTypeMapper\StaticTypeMapper;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\PHPStanStaticTypeMapper\Enum\TypeKind;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
