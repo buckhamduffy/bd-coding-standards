@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.1.1 - 2024-07-08
+#### Bug Fixes
+- **(deps)** update all non-major dependencies - (7730894) - Buckham Duffy Bot
+
+- - -
+
 ## v6.1.0 - 2024-07-07
 #### Features
 - add captainhook for use in other projects - (ac2060e) - Aaron Florey
