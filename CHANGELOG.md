@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.1.5 - 2024-08-09
+#### Bug Fixes
+- **(deps)** update dependency symplify/easy-coding-standard to v12.3.5 - (d65f404) - Buckham Duffy Bot
+
+- - -
+
 ## v6.1.4 - 2024-08-02
 #### Bug Fixes
 - **(deps)** update all non-major dependencies - (3f17a0a) - Buckham Duffy Bot
