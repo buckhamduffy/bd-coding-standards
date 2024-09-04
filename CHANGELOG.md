@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v6.1.6 - 2024-09-04
+#### Bug Fixes
+- **(deps)** update dependency driftingly/rector-laravel to v1.2.2 - (8fa2621) - Buckham Duffy Bot
+
+- - -
+
 ## v6.1.5 - 2024-08-09
 #### Bug Fixes
 - **(deps)** update dependency symplify/easy-coding-standard to v12.3.5 - (d65f404) - Buckham Duffy Bot
