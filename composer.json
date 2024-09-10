@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=8.2.1",
-        "driftingly/rector-laravel": "1.2.2",
+        "driftingly/rector-laravel": "1.2.3",
         "larastan/larastan": "2.9.8",
         "laravel/framework": "^11.14.0",
         "phpstan/phpstan": "^1.11.6",
