@@ -2,6 +2,7 @@
 
 namespace BuckhamDuffy\CodingStandards\CaptainHook;
 
+use Throwable;
 use CaptainHook\App\Config;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -61,19 +62,31 @@ class PhpstanAction implements Action, Constrained
 
 		$process->run();
 
-		if (!$process->getOutput()) {
+		if (!$process->isSuccessful() || !$process->getOutput()) {
 			$io->writeError($process->getErrorOutput());
 
 			throw new ActionFailed('PHPStan failed to run');
 		}
 
-		$output = json_decode(trim($process->getOutput()), true, 512, \JSON_THROW_ON_ERROR);
+		if (!preg_match('/(\{.*\})/s', $process->getOutput(), $match)) {
+			$io->writeError($process->getErrorOutput());
+
+			throw new ActionFailed('PHPStan failed to run');
+		}
+
+		try {
+			$output = json_decode(str_replace("\n", '', trim($match[1])), true, 512, \JSON_THROW_ON_ERROR);
+		} catch (Throwable $e) {
+			$io->writeError($e);
+
+			throw new ActionFailed('PHPStan failed to run');
+		}
 
 		$errors = Arr::get($output, 'totals.errors', 0) + Arr::get($output, 'totals.file_errors', 0);
 
 		if ($errors === 0) {
 			foreach ($checkFiles as $file) {
-				$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
+				$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
 			}
 
 			$io->write('PHPStan passed', true, IO::VERBOSE);
@@ -85,7 +98,7 @@ class PhpstanAction implements Action, Constrained
 			foreach ($output['files'] as $fileKey => $data) {
 				if (Str::contains($fileKey, $file)) {
 					foreach ($data['messages'] as $message) {
-						$io->write(sprintf(
+						$io->write(\sprintf(
 							'  %s %s:%s - %s',
 							IOUtil::PREFIX_FAIL,
 							$file,
@@ -98,10 +111,10 @@ class PhpstanAction implements Action, Constrained
 				}
 			}
 
-			$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
+			$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
 		}
 
-		throw new ActionFailed(sprintf('Error: found %d PHPStan %s', $errors, Str::plural('error', $errors)));
+		throw new ActionFailed(\sprintf('Error: found %d PHPStan %s', $errors, Str::plural('error', $errors)));
 	}
 
 	public static function getRestriction(): Restriction

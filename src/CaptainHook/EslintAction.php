@@ -94,7 +94,7 @@ class EslintAction implements Action, Constrained
 	private function outputResults(IO $io, string $file, ?array $data): void
 	{
 		if (!$data) {
-			$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file));
+			$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file));
 
 			return;
 		}
@@ -118,7 +118,7 @@ class EslintAction implements Action, Constrained
 	private function outputErrors(IO $io, string $file, array $data): void
 	{
 		foreach ($data['messages'] as $message) {
-			$io->write(sprintf(
+			$io->write(\sprintf(
 				'  %s %s:%d - %s',
 				IOUtil::PREFIX_FAIL,
 				$file,

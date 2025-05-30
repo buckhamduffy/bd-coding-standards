@@ -2,6 +2,7 @@
 
 namespace BuckhamDuffy\CodingStandards\CaptainHook;
 
+use Throwable;
 use CaptainHook\App\Config;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -53,7 +54,6 @@ class EcsAction implements Action, Constrained
 			'--clear-cache',
 			'--no-progress-bar',
 			'--no-diffs',
-			'--quiet',
 			'--output-format=json',
 			'--fix',
 			'--',
@@ -61,13 +61,25 @@ class EcsAction implements Action, Constrained
 
 		$process->run();
 
-		if (!$process->getOutput()) {
+		if (!$process->isSuccessful() || !$process->getOutput()) {
 			$io->writeError($process->getErrorOutput());
 
-			throw new ActionFailed('ECS failed to run');
+			throw new ActionFailed('ECS Failed: No output');
 		}
 
-		$output = json_decode(str_replace("\n", '', trim($process->getOutput())), true, 512, \JSON_THROW_ON_ERROR);
+		if (!preg_match('/(\{.*\})/s', $process->getOutput(), $match)) {
+			$io->writeError($process->getErrorOutput());
+
+			throw new ActionFailed('ECS Failed: No JSON output');
+		}
+
+		try {
+			$output = json_decode(str_replace("\n", '', trim($match[1])), true, 512, \JSON_THROW_ON_ERROR);
+		} catch (Throwable $e) {
+			$io->writeError($e);
+
+			throw new ActionFailed('ECS Failed: Coul not decode JSON output');
+		}
 
 		$errors = Arr::get($output, 'totals.errors', 0);
 
@@ -78,7 +90,7 @@ class EcsAction implements Action, Constrained
 				if (Arr::has($output, 'files.' . $file)) {
 					$this->outputFileResult($io, $file, Arr::get($output, 'files.' . $file));
 				} else {
-					$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
+					$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
 				}
 			}
 
@@ -89,7 +101,7 @@ class EcsAction implements Action, Constrained
 
 		foreach ($checkFiles as $file) {
 			if (!\array_key_exists($file, $output['files'])) {
-				$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
+				$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
 
 				continue;
 			}
@@ -97,7 +109,7 @@ class EcsAction implements Action, Constrained
 			$this->outputFileResult($io, $file, $output['files'][$file]);
 		}
 
-		throw new ActionFailed(sprintf('<error>Error: found %d ECS %s</error>', $errors, Str::plural('error', $errors)));
+		throw new ActionFailed(\sprintf('<error>Error: found %d ECS %s</error>', $errors, Str::plural('error', $errors)));
 	}
 
 	public static function getRestriction(): Restriction
@@ -111,7 +123,7 @@ class EcsAction implements Action, Constrained
 			foreach (Arr::get($diff, 'applied_checkers', []) as $checker) {
 				$checker = class_basename($checker);
 				$checker = preg_replace('/([a-z])([A-Z])/', '$1 $2', $checker);
-				$io->write(sprintf('  %s %s - %s', IOUtil::PREFIX_OK, $file, $checker));
+				$io->write(\sprintf('  %s %s - %s', IOUtil::PREFIX_OK, $file, $checker));
 			}
 		}
 	}
@@ -130,7 +142,7 @@ class EcsAction implements Action, Constrained
 	private function outputErrors(IO $io, string $file, array $errors): void
 	{
 		foreach ($errors as $error) {
-			$io->write(sprintf(
+			$io->write(\sprintf(
 				'  %s %s:%d - %s',
 				IOUtil::PREFIX_FAIL,
 				$file,

@@ -80,7 +80,7 @@ class GithubActionLintAction implements Action, Constrained
 
 		if ($output->count() === 0) {
 			foreach ($checkFiles as $file) {
-				$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
+				$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file), true, IO::VERBOSE);
 			}
 
 			$io->write('Action Lint passed', true, IO::VERBOSE);
@@ -93,7 +93,7 @@ class GithubActionLintAction implements Action, Constrained
 
 			foreach ($items as $item) {
 				$io->write(
-					sprintf(
+					\sprintf(
 						'  %s %s:%s - %s',
 						IOUtil::PREFIX_FAIL,
 						$file,
@@ -104,11 +104,11 @@ class GithubActionLintAction implements Action, Constrained
 			}
 
 			if (!$items->count()) {
-				$io->write(sprintf('  %s %s', IOUtil::PREFIX_OK, $file));
+				$io->write(\sprintf('  %s %s', IOUtil::PREFIX_OK, $file));
 			}
 		}
 
-		throw new ActionFailed(sprintf('Error: found %d Action Lint %s', \count($output), Str::plural('error', \count($output))));
+		throw new ActionFailed(\sprintf('Error: found %d Action Lint %s', \count($output), Str::plural('error', \count($output))));
 	}
 
 	public static function getRestriction(): Restriction
