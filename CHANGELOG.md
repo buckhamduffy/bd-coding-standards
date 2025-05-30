@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v7.0.0 - 2025-05-30
+#### Features
+- upgrade to phpstan 2, laravel 12 etc - (335b46b) - Aaron Florey
+
+- - -
+
 ## v6.1.6 - 2024-09-04
 #### Bug Fixes
 - **(deps)** update dependency driftingly/rector-laravel to v1.2.2 - (8fa2621) - Buckham Duffy Bot
