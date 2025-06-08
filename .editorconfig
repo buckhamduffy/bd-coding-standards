@@ -7,7 +7,7 @@ insert_final_newline = true
 max_line_length = 120
 tab_width = 4
 trim_trailing_whitespace = true
-ij_continuation_indent_size = 8
+ij_continuation_indent_size = 4
 ij_formatter_off_tag = @formatter:off
 ij_formatter_on_tag = @formatter:on
 ij_formatter_tags_enabled = false
@@ -456,7 +456,7 @@ ij_vue_spaces_around_interpolation_delimiters = false
 ij_vue_uniform_indent = true
 
 [{*.php}]
-ij_continuation_indent_size = 4
+ij_continuation_indent_size = 2
 ij_php_align_assignments = false
 ij_php_align_class_constants = false
 ij_php_align_group_field_declarations = false
@@ -595,7 +595,7 @@ ij_php_space_before_catch_keyword = true
 ij_php_space_before_catch_left_brace = true
 ij_php_space_before_catch_parentheses = true
 ij_php_space_before_class_left_brace = true
-ij_php_space_before_closure_left_parenthesis = false
+ij_php_space_before_closure_left_parenthesis = true
 ij_php_space_before_colon = true
 ij_php_space_before_colon_in_return_type = false
 ij_php_space_before_comma = false
