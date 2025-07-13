@@ -61,7 +61,7 @@ class EcsAction implements Action, Constrained
 
 		$process->run();
 
-		if (!$process->isSuccessful() || !$process->getOutput()) {
+		if (!$process->getOutput()) {
 			$io->writeError($process->getErrorOutput());
 
 			throw new ActionFailed('ECS Failed: No output');
