@@ -5,6 +5,15 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v7.0.1 - 2025-07-13
+#### Bug Fixes
+- ecs action - (edc2c3d) - Aaron Florey
+#### Miscellaneous Chores
+- update .editorconfig - (d16c218) - BuckhamBot
+- update .editorconfig - (61fa5dd) - BuckhamBot
+
+- - -
+
 ## v7.0.0 - 2025-05-30
 #### Features
 - upgrade to phpstan 2, laravel 12 etc - (335b46b) - Aaron Florey
