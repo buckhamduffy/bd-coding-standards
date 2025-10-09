@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v7.0.2 - 2025-10-09
+#### Bug Fixes
+- Remove SimplifiedIfReturnFixer - (b05249c) - Ryan Dwyer
+
+- - -
+
 ## v7.0.1 - 2025-07-13
 #### Bug Fixes
 - ecs action - (edc2c3d) - Aaron Florey
