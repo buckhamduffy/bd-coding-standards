@@ -86,7 +86,6 @@ use PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer;
 use PhpCsFixer\Fixer\Operator\NoUselessNullsafeOperatorFixer;
 use PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer;
 use PhpCsFixer\Fixer\Whitespace\NoWhitespaceInBlankLineFixer;
-use PhpCsFixer\Fixer\ControlStructure\SimplifiedIfReturnFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\ControlStructure\NoAlternativeSyntaxFixer;
 use PhpCsFixer\Fixer\ControlStructure\NoSuperfluousElseifFixer;
@@ -294,7 +293,6 @@ return ECSConfig::configure()
 		SelfStaticAccessorFixer::class,
 		SemicolonSpacingSniff::class,
 		ShortScalarCastFixer::class,
-		SimplifiedIfReturnFixer::class,
 		SingleBlankLineAtEofFixer::class,
 		SingleBlankLineBeforeNamespaceFixer::class,
 		SingleClassElementPerStatementFixer::class,
