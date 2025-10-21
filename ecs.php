@@ -347,6 +347,7 @@ return ECSConfig::configure()
 			'create_function' => null,
 			'dump'            => null,
 			'ray'             => null,
+			'ds'              => null,
 		]
 	])
 	->withConfiguredRule(ObjectOperatorSpacingSniff::class, [
