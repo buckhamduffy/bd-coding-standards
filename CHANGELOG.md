@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v7.0.3 - 2025-10-21
+#### Bug Fixes
+- add ds to forbidden functions - (00be55d) - Aaron Florey
+
+- - -
+
 ## v7.0.2 - 2025-10-09
 #### Bug Fixes
 - Remove SimplifiedIfReturnFixer - (b05249c) - Ryan Dwyer
