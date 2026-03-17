@@ -6,7 +6,7 @@
         "php": ">=8.3.0",
         "driftingly/rector-laravel": "^2.0.5",
         "larastan/larastan": "^3.4.0",
-        "laravel/framework": "^12.16.0",
+        "laravel/framework": "^13.0.0",
         "phpstan/phpstan": "^2.1.17",
         "rector/rector": "^2.0.16",
         "symplify/easy-coding-standard": "^12.5.18",
