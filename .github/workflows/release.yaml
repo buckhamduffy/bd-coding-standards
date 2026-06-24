@@ -18,12 +18,12 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
           ref: ${{ github.event.workflow_run.head_branch }}
 
-      - uses: buckhamduffy/release-drafter@v1
+      - uses: buckhamduffy/release-drafter@20021c8ddccbc28fc87056f2f660772ad59cec47 # v1.6.1
         id: version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
