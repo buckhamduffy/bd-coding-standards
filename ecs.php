@@ -126,6 +126,7 @@ use PhpCsFixer\Fixer\Operator\AssignNullCoalescingToCoalesceEqualFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\LowerCaseConstantSniff;
 use PHP_CodeSniffer\Standards\PEAR\Sniffs\Classes\ClassDeclarationSniff;
 use PhpCsFixer\Fixer\Semicolon\MultilineWhitespaceBeforeSemicolonsFixer;
+use BuckhamDuffy\CodingStandards\Sniffs\Debug\ForbiddenDebugMethodsSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\LowercasePHPFunctionsSniff;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTrimConsecutiveBlankLineSeparationFixer;
@@ -205,6 +206,7 @@ return ECSConfig::configure()
 		EmptyStatementSniff::class,
 		EncodingFixer::class,
 		ExplicitIndirectVariableFixer::class,
+		ForbiddenDebugMethodsSniff::class,
 		FullOpeningTagFixer::class,
 		FullyQualifiedStrictTypesFixer::class,
 		FunctionCallArgumentSpacingSniff::class,

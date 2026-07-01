@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="ForbiddenDebugMethodsSniffTest">
+	<rule ref="../../src/Sniffs/Debug/ForbiddenDebugMethodsSniff.php"/>
+</ruleset>
