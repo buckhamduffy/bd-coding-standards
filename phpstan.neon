@@ -5,5 +5,8 @@ parameters:
 	paths:
 		- src
 
+	scanDirectories:
+		- vendor/squizlabs/php_codesniffer/src
+
 	# The level 8 is the highest level
 	level: 5

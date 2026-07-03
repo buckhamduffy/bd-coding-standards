@@ -23,26 +23,6 @@ $config
 return $config;
 ```
 
-###### Rector Example
-rector.php
-```php
-<?php
-
-use Rector\ValueObject\PhpVersion;
-use RectorLaravel\Set\LaravelLevelSetList;
-use Rector\Configuration\RectorConfigBuilder;
-
-/** @var RectorConfigBuilder $config */
-$config = require __DIR__ . '/vendor/buckhamduffy/coding-standards/rector.php';
-
-$config
-    ->withSets([LaravelLevelSetList::UP_TO_LARAVEL_110])
-    ->withPhpVersion(PhpVersion::PHP_83)
-    ->withPhpSets(php83: true);
-
-return $config;
-```
-
 ###### PHPStan
 phpstan.neon
 ```neon
