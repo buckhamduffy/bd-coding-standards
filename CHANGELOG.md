@@ -5,6 +5,16 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v8.1.0 - 2026-07-03
+#### Bug Fixes
+- ci testing, remove rector (#150) - (42f9a06) - Simon Yang
+#### Features
+- Add ForbiddenDebugMethodsSniff to lint debug calls - (02ed043) - Simon Yang
+#### Miscellaneous Chores
+- **(deps)** update actions/checkout action to v6 - (b7861c7) - Buckham Duffy Bot
+
+- - -
+
 ## v8.0.0 - 2026-03-20
 #### Features
 - allow laravel 13 - (b281489) - Aaron Florey
