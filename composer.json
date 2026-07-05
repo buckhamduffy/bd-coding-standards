@@ -7,7 +7,7 @@
         "larastan/larastan": "^3.9.3",
         "laravel/framework": "^12.7 || ^13.0",
         "phpstan/phpstan": "^2.1.32",
-        "symplify/easy-coding-standard": "^12.5.18",
+        "symplify/easy-coding-standard": "^13.0.0",
         "captainhook/captainhook": "^5.25.2",
         "symfony/process": "^7.3"
     },
