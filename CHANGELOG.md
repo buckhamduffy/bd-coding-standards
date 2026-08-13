@@ -5,6 +5,12 @@
 - **(version)** v3.2.1 - (2ce7cd0) - BuckhamBot
 
 - - -
+## v8.2.0 - 2026-08-13
+#### Features
+- allow symfony 8 - (e6402ad) - Ben Malen
+
+- - -
+
 ## v8.1.0 - 2026-07-03
 #### Bug Fixes
 - ci testing, remove rector (#150) - (42f9a06) - Simon Yang
